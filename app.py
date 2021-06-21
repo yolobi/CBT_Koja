@@ -5,7 +5,7 @@ from datetime import timedelta
 
 
 
-app = Flask(__name__, template_folder='../client/templates')
+app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.config["JWT_COOKIE_SECURE"] = False
 app.config["JWT_TOKEN_LOCATION"] = ["cookies"]

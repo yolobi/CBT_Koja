@@ -128,7 +128,7 @@ header label {
     justify-content: center;
     height: .5rem;
     background-position: center;
-    background: url(images/tr.png);
+    background: url('/static/images/aa.png');
 }
 
 .home .image img {
@@ -227,14 +227,14 @@ header label {
 
 .features .box-container .boxa img {
     height: 17rem;
-    background: url(aa.png);
+    background: url('/static/images/aa.png');
     background-position: center;
     background-size: 294px;
 }
 
 .features .box-container .boxu img {
     height: 17rem;
-    background: url(aa.png);
+    background: url('/static/images/aa.png');
     background-position: center;
     background-size: 294px;
     margin-bottom: 15px;
@@ -243,7 +243,7 @@ header label {
 
 .features .box-container .boxi img {
     height: 15rem;
-    background: url(aa.png);
+    background: url('/static/images/aa.png');
     background-position: center;
     background-size: 294px;
 }
@@ -331,7 +331,7 @@ header label {
     background-size: 650px 650px;
     background-position: center;
     margin-bottom: 30px;
-    background-image: url(/images/aa.png);
+    background-image: url('/static/images/aa.png');
 }
 
 .about .column .content {
@@ -386,7 +386,7 @@ header label {
     width: 40%;
     padding-bottom: 4%;
     background-position: center;
-    background-image: url(aa.png);
+    background-image: url('/static/images/aa.png');
     background-size: 420px;
     margin-left: 30%;
     margin-top: 5%;
