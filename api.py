@@ -1,5 +1,7 @@
 from app import app
 from home import *
+from controller import *
+from db import *
 from flask_cors import CORS
 
 CORS(app)
