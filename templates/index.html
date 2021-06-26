@@ -7,8 +7,10 @@
     <title>KOJA</title>
 
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}" />
+    <link rel="stylesheet" href="../static/css/welcome.css" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 
     <!-- Fonts -->
 </head>
@@ -16,7 +18,7 @@
 <body class="antialiased">
     <header>
         <div class="logo">
-            <img src="{{ url_for('static', filename='images/koja.png') }}" alt="" style="height: 50px; width: 50px;">
+            <img src="../static/images/koja.png" alt="" style="height: 50px; width: 50px;">
         </div>
         <input type="checkbox" id="menu-bar">
         <label for="menu-bar" class="fas fa-bars"></label>
@@ -24,28 +26,28 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-            <a href="/login">Login</a>
+            <a href="login.html">Login</a>
         </nav>
     </header>
 
 
     <!-- home section -->
-    <section class="home" id="home" style="background-image: url('/static/images/tr.png');">
+    <section class="home" id="home" style="background-image: url('../static/images/tr.png');">
         <div class="content" >
             <h3><span>Komunitas Olimpiade </span>Jogja</h3>
             <p> Science for Humanity</p>
         </div>
         <div class="image">
-            <img src="{{ url_for('static', filename='images/koja.png') }}" alt="" style="width: 450px; height: 450px;">
+            <img src="../static/images/koja.png" alt="" style="width: 75%; height: 75%;">
         </div>
     </section>
 
 
     <!-- about section -->
-    <section class="about" id="about" style="background-image: url('/static/images/t.png');">
+    <section class="about" id="about" style="background-image: url('../static/images/t.png');">
         <div class="column">
             <div class="image">
-                <img src="{{ url_for('static', filename='images/ksn (2).png') }}" alt="" style="width: 400px; height: 400px;">
+                <img src="../static/images/ksn (2).png" alt="" style="width: 70%; height: 70%;">
             </div>
             <div class="content">
                 <h2> About KOJA</h2>
@@ -59,19 +61,19 @@
         <h2> Contact Us: </h2>
         <div class="ik">
             <div class="image">
-                <img src="{{ url_for('static', filename='images/ia.png') }}" alt="">
+                <img src="../static/images/ia.png" alt="">
             </div>
             <div class="box">
                 <div class="wrapper">
                     <div class="button">
                         <div class="icon">
-                            <img src="{{ url_for('static', filename='images/instagram.svg') }}" style="height: 20px; width: 20px;">
+                            <i class="fab fa-instagram"></i>
                         </div>
                         <a href="https://www.instagram.com/koja_olimpiade/"><span>Instagram</span></a>
                     </div>
                     <div class="button">
                         <div class="icon">
-                            <img src="{{ url_for('static', filename='images/whatsapp.svg') }}" style="height: 20px; width: 20px;">
+                            <i class="fab fa-whatsapp"></i>
                         </div>
                         <a href="https://wa.me/+6281343334473"><span>Whatsapp</span></a>
                     </div>

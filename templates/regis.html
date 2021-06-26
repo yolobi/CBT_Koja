@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Login</title>
-		<link rel="stylesheet" type="text/css" href="/static/css/login.css">
+		<title>Sign Up</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/login.css">
 		<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<img class="wave" src="/static/images/t.png">
+		<img class="wave" src="../static/images/t.png">
 		<div class="container">
 			<div class="img">
-				<img src="/static/images/koja.png" style="width: 400px; height: 400px;">
+				<img src="../static/images/koja.png" style="width: 400px; height: 400px;">
 			</div>
-		<div class="login-content" style="margin-top: 1cm;">
-			<form action="signinrevisi.html">
+			<div class="login-content" style="margin-top: 1cm;">
+			<form action="/api/register" method="POST">
 				<div class="input-div one">
 					<div class="i">
 						<i class="fas fa-user"></i>
 					</div>
-					<div class="div">
+					<div class="form-group">
 						<input type="text" class="input" placeholder="Nama Lengkap">
 					</div>
 				</div>
@@ -28,7 +28,7 @@
 					<div class="i">
 						<i class="fas fa-school"></i>
 					</div>
-					<div class="div">
+					<div class="form-group">
 						<input type="text" class="input" placeholder="Email">
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 					<div class="i">
 						<i class="fas fa-school"></i>
 					</div>
-					<div class="div">
+					<div class="form-group">
 						<input type="text" class="input" placeholder="Sekolah">
 					</div>
 				</div>
@@ -46,8 +46,8 @@
 					<div class="i">
 						<i class="fas fa-atom"></i>
 					</div>
-					<div class="div">
-						<select name="bidang" id="bidang" class="form-select">
+					<div class="form-group">
+						<select name="bidang" id="bidang" class="form-select" style="border: 1rem; font-family: 'Poppins', sans-serif; font-size: 18px;">
 							<option value="matematika">Matematika</option>
 							<option value="fisika">Fisika</option>
 							<option value="kimia">Kimia</option>
@@ -65,24 +65,26 @@
 					<div class="i">
 						<i class="fas fa-lock"></i>
 					</div>
-					<div class="div">
+					<div class="form-group">
 						<input type="password" class="input" placeholder="Password">
 					</div>
 				</div>
 
 				<div class="s">
-					<a href="project web warehouse\project web warehouse\idex.html" type="submit">Login</a>
+					<button type="submit">
+						Sign Up
+					</button>
 				</div>
 	
 				<div class="x">
 					<p>
 						<span> Already have an account? </span>
-						<a href="signuprevisi.html">Login here</a>
+						<a href="login.html">Login here</a>
 					</p>
 				</div>
-				</form>
+			</form>
 			</div>
 		</div>
-		<script type="text/javascript" src="/static/js/signinuprevisi.js"></script>
+		<script type="text/javascript" src="../static/js/signinuprevisi.js"></script>
 	</body>
 </html>
