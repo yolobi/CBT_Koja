@@ -5,6 +5,8 @@ from flask_jwt_extended import (create_access_token)
 import hashlib
 
 
+
+
 @app.route("/api/register", methods=['POST'])
 def register_form():
 	if request.method == 'POST':
@@ -13,6 +15,7 @@ def register_form():
 		email = data['email']
 		school = data['school']
 		bidang = data['bidang']
+		phone = data['nomor']
 		password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
 		cur = mysql.cursor(buffered=True)
 		cur.execute("SELECT 1 FROM users WHERE email=%s", (email,))
@@ -21,7 +24,7 @@ def register_form():
 			flash("User already exist!")
 			return redirect(url_for('register'))
 		else:
-			cur.execute("INSERT INTO users (name, email, school_address, class, password) VALUES (%s, %s, %s, %s, %s)", (name, email, school, bidang, password))
+			cur.execute("INSERT INTO users (name, email, school_address, class, password, phone) VALUES (%s, %s, %s, %s, %s, %s)", (name, email, school, bidang, password, phone))
 
 			mysql.commit()
 			cur.close()
@@ -62,6 +65,9 @@ def login_form():
 @app.route("/api/persyaratan", methods=["POST"])
 def upload():
 	if request.method == 'POST':
+		UPLOAD_FOLDER = 'upload/'
+		ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+		app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 		data = request.files['follow']
 		print(data)
 

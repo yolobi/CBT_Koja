@@ -29,6 +29,7 @@ CREATE TABLE `users` (
   `password` char(60) NOT NULL,
   `school_address` varchar(100) NOT NULL,
   `class` varchar(30) NOT NULL,
+  `phone` varchar(20) NOT NULL,
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-26 14:00:34
+-- Dump completed on 2021-06-27 18:58:32
