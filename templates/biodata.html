@@ -28,8 +28,8 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h5 style="float: left;">Nama User</h5>
-                <h6 style="float: left;">Bidang User</h6>
+                <h5 style="float: left;">{{ user.name }}</h5>
+                <h6 style="float: left;">{{ user.bidang }}</h6>
             </div>
 
             <ul class="list-unstyled components">
@@ -70,19 +70,23 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="card-body">
                               <div class="row">
-                                <div class="col-sm-4"><strong class="text-uppercase">Nama:</strong></div>
+                                <div class="col-sm-4"><strong class="text-uppercase">Nama: {{ user.name }}</strong></div>
                                 <div class="col-sm-8">#</div>
                               </div>
                               <div class="row mt-3">
-                                <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
+                                <div class="col-sm-4"><strong class="text-uppercase">Email: {{ user.email }}</strong></div>
                                 <div class="col-sm-8">#</div>
                               </div>
                               <div class="row mt-3">
-                                <div class="col-sm-4"><strong class="text-uppercase">Sekolah:</strong></div>
+                                <div class="col-sm-4"><strong class="text-uppercase">Sekolah: {{ user.sekolah }}</strong></div>
                                 <div class="col-sm-8">#</div>
                               </div>
                               <div class="row mt-3">
-                                <div class="col-sm-4"><strong class="text-uppercase">Bidang:</strong></div>
+                                <div class="col-sm-4"><strong class="text-uppercase">Bidang: {{ user.bidang }}</strong></div>
+                                <div class="col-sm-8">#</div>
+                              </div>
+                              <div class="row mt-3">
+                                <div class="col-sm-4"><strong class="text-uppercase">Nomor HP: {{ user.nomor }}</strong></div>
                                 <div class="col-sm-8">#</div>
                               </div>
                             </div>
