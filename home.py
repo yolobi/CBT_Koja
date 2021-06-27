@@ -3,6 +3,8 @@ from app import app
 import jwt
 from flask import render_template, request
 
+check = 0
+
 @app.route("/")
 def index():
 	return render_template('index.html')
@@ -45,7 +47,11 @@ def persyaratan():
 		token = request.cookies.get('auth')
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
-		return render_template("persyaratan.html", user=auth)
+		if (check):
+			message = "https://chat.whatsapp.com/CAZ3dVQXOH25NBb823p1HC"
+			return render_template("persyaratan.html", message=message, user=auth)
+		else:
+			return render_template("persyaratan.html", user=auth)
 	else:
 		error = "You need to login first"
 		return render_template("index.html", error=error)

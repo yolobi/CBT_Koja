@@ -6,6 +6,7 @@ from flask_jwt_extended import (create_access_token)
 import hashlib
 import os
 import jwt
+from home import check
 
 
 
@@ -55,14 +56,12 @@ def login_form():
 				print(access_token)
 				return response
 			else:
-				error = "Invalid username and password"
-				return render_template("login.html", error=error)
+				flash('Invalid username or password')
+				return redirect(url_for("login"))
 
-
-		except Exception as e:
-			print(e)
-			error = "Invalid username and password"
-			return render_template("login.html", error=error)
+		except:
+			flash('Invalid username or password')
+			return redirect(url_for("login"))
 
 
 @app.route("/api/persyaratan", methods=["POST"])
@@ -102,4 +101,5 @@ def upload():
 			poster_pembuat.save(os.path.join(app.config['UPLOAD_FOLDER'], poster_pembuat_name))
 			share.save(os.path.join(app.config['UPLOAD_FOLDER'], share_name))
 			message = "https://chat.whatsapp.com/CAZ3dVQXOH25NBb823p1HC"
+			check = 1
 			return render_template("persyaratan.html", message=message, user=auth)
