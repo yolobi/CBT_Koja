@@ -52,7 +52,16 @@ def persyaratan():
 
 @app.route("/editbiodata")
 def edit_bio():
-	return render_template("editbiodata.html")
+	if (request.method == 'GET' and request.cookies.get("auth")):
+		token = request.cookies.get('auth')
+		print(token)
+		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
+		auth = payload['sub']
+		print(auth)
+		return render_template("dashboard.html", user=auth)
+	else:
+		error = "You need to login first"
+		return render_template("editbiodata.html", error=error)
 
 @app.route("/logout")
 def logout():
@@ -60,3 +69,5 @@ def logout():
 		resp = make_response(render_template("index.html"))
 		resp.set_cookie('auth', '', expires=0)
 		return resp
+	else:
+		return redirect(url_for('index'))
