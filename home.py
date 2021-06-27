@@ -21,10 +21,10 @@ def home():
 def profile():
 	return render_template("biodata.html")
 
-@app.route("/editbiodata")
-def editbiodata():
-	return render_template("editbiodata.html")
-
 @app.route("/persyaratan")
 def persyaratan():
 	return render_template("persyaratan.html")
+
+@app.route("/editbiodata")
+def edit_bio():
+	return render_template("editbiodata.html")
