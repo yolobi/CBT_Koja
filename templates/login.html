@@ -2,6 +2,9 @@
 <html>
 	<head>
 		<title>Login</title>
+		{% if error %}
+		<p class=error> {{ error }} </p>
+		{% endif %}
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
 			<ul class=flashes>

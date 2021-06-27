@@ -55,15 +55,14 @@ def login_form():
 				print(access_token)
 				return response
 			else:
-				result = jsonify({"error":"Invalid username and password"})
-
-			return result
+				error = "Invalid username and password"
+				return render_template("login.html", error=error)
 
 
 		except Exception as e:
 			print(e)
-			result = jsonify({"error":"Invalid username and password"})
-			return result
+			error = "Invalid username and password"
+			return render_template("login.html", error=error)
 
 
 @app.route("/api/persyaratan", methods=["POST"])
