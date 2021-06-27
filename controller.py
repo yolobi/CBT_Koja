@@ -57,3 +57,12 @@ def login_form():
 			print(e)
 			result = jsonify({"error":"Invalid username and password"})
 			return result
+
+
+@app.route("/api/persyaratan", methods=["POST"])
+def upload():
+	if request.method == 'POST':
+		data = request.files['follow']
+		print(data)
+
+		return '123'
