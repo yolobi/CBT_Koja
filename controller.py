@@ -46,9 +46,10 @@ def login_form():
 		
 		cur.execute("SELECT * FROM users where email = %s", (email,))
 		rv = cur.fetchone()
+		print(rv)
 		try:
 			if bcrypt.check_password_hash(rv[3], password):
-				access_token = create_access_token(identity = {'uid': rv[0],'email': rv[1],'name': rv[2], 'school': rv[4], 'bidang': rv[5]})
+				access_token = create_access_token(identity = {'uid': rv[0],'email': rv[1],'name': rv[2], 'school': rv[4], 'bidang': rv[5], 'phone': rv[6]})
 				response = make_response(redirect('/home'))
 				response.set_cookie('auth', access_token)
 				print(access_token)
