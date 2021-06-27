@@ -18,9 +18,9 @@ def home():
 	return render_template("dashboard.html")
 
 @app.route("/profil")
-def home():
+def profile():
 	return render_template("biodata.html")
 
 @app.route("/editbiodata")
-def home():
+def edit_bio():
 	return render_template("editbiodata.html")
