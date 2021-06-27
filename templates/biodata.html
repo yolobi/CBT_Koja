@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="stylesheet" href="/static/css/styles.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
@@ -44,9 +43,9 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" style="background-image: url('../static/images/t.png');">
+        <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -60,17 +59,39 @@
                     </a>
                 </div>
             </nav>
-            <!-- ini nanti sesuain sama bidangnya-->
-            <!--
-            <div class="card" style="width: 18rem; margin-left: 2cm; background-color: #649BBC;">
-              <img src="../static/images/math.svg" class="card-img-top" alt="..." style="width: 130px; height: 130px; margin-right: auto; margin-left: auto;">
-              <div class="card-body">
-                <h5 class="card-title">Matematika</h5>
-                <p class="card-text" style="color: white;">Silakan untuk klik Masuk untuk pindah ke halaman persiapan pengerjaan soal.</p>
-                <a href="#" class="btn btn-primary">Masuk</a>
-              </div>
+
+            <div class="isi_page">
+            <h2>PROFIL</h2>
+                <div class="card">
+                    <div class="card-header text-center">
+                      BIODATA PESERTA
+                    </div>
+                    <div class="card-body">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-sm-4"><strong class="text-uppercase">Nama:</strong></div>
+                                <div class="col-sm-8">#</div>
+                              </div>
+                              <div class="row mt-3">
+                                <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
+                                <div class="col-sm-8">#</div>
+                              </div>
+                              <div class="row mt-3">
+                                <div class="col-sm-4"><strong class="text-uppercase">Sekolah:</strong></div>
+                                <div class="col-sm-8">#</div>
+                              </div>
+                              <div class="row mt-3">
+                                <div class="col-sm-4"><strong class="text-uppercase">Bidang:</strong></div>
+                                <div class="col-sm-8">#</div>
+                              </div>
+                            </div>
+                          </div><div class="text-right">
+                    <a href="/editbiodata" class="btn btn-primary pull-right">Edit</a>
+                    </div>
+                </div>
+                </div>
             </div>
-            -->
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
@@ -84,18 +105,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript">
-      $(document).ready(function () {
-          $("#sidebar").mCustomScrollbar({
-              theme: "minimal"
-          });
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
 
-          $('#sidebarCollapse').on('click', function () {
-              $('#sidebar, #content').toggleClass('active');
-              $('.collapse.in').toggleClass('in');
-              $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-          });
-      });
-  </script>
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 
 </html>

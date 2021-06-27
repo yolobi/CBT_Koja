@@ -16,3 +16,11 @@ def login():
 @app.route("/home")
 def home():
 	return render_template("dashboard.html")
+
+@app.route("/profil")
+def home():
+	return render_template("biodata.html")
+
+@app.route("/editbiodata")
+def home():
+	return render_template("editbiodata.html")
