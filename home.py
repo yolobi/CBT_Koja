@@ -41,7 +41,14 @@ def profile():
 
 @app.route("/persyaratan")
 def persyaratan():
-	return render_template("persyaratan.html")
+	if (request.method == 'GET' and request.cookies.get("auth")):
+		token = request.cookies.get('auth')
+		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
+		auth = payload['sub']
+		return render_template("persyaratan.html", user=auth)
+	else:
+		error = "You need to login first"
+		return render_template("index.html", error=error)
 
 @app.route("/editbiodata")
 def edit_bio():

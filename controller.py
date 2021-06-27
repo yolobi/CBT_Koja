@@ -1,8 +1,11 @@
 from app import app, bcrypt, jwt
 from flask import jsonify, request, redirect, url_for, make_response, render_template, flash
+from werkzeug.utils import secure_filename
 from db import mysql
 from flask_jwt_extended import (create_access_token)
 import hashlib
+import os
+import jwt
 
 
 
@@ -64,11 +67,39 @@ def login_form():
 
 @app.route("/api/persyaratan", methods=["POST"])
 def upload():
+	ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+
+	def allowed_file(filename):
+		return '.' in filename and \
+			filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 	if request.method == 'POST':
-		UPLOAD_FOLDER = 'upload/'
+		token = request.cookies.get('auth')
+		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
+		auth = payload['sub']
+		UPLOAD_FOLDER = 'upload/{}'.format(auth['uid'])
 		ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 		app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-		data = request.files['follow']
-		print(data)
-
-		return '123'
+		follow = request.files['follow']
+		tag_pendaftaran = request.files['tagpendaftaran']
+		tag_pembuat = request.files['tagpembuat']
+		poster_pendaftaran = request.files['posterpendaftaran']
+		poster_pembuat = request.files['posterpembuat']
+		share = request.files['share']
+		if allowed_file(follow.filename) and allowed_file(tag_pendaftaran.filename) and allowed_file(tag_pembuat.filename) and \
+		 	allowed_file(poster_pendaftaran.filename) and allowed_file(poster_pembuat.filename) and allowed_file(share.filename):
+			os.system("cd upload ; mkdir {}".format(auth['uid']))
+			follow_name = secure_filename(follow.filename)
+			tag_pendaftaran_name = secure_filename(tag_pendaftaran.filename)
+			tag_pembuat_name = secure_filename(tag_pembuat.filename)
+			poster_pendaftaran_name = secure_filename(poster_pendaftaran.filename)
+			poster_pembuat_name = secure_filename(poster_pembuat.filename)
+			share_name = secure_filename(share.filename)
+			follow.save(os.path.join(app.config['UPLOAD_FOLDER'], follow_name))
+			tag_pendaftaran.save(os.path.join(app.config['UPLOAD_FOLDER'], tag_pendaftaran_name))
+			tag_pembuat.save(os.path.join(app.config['UPLOAD_FOLDER'], tag_pembuat_name))
+			poster_pendaftaran.save(os.path.join(app.config['UPLOAD_FOLDER'], poster_pendaftaran_name))
+			poster_pembuat.save(os.path.join(app.config['UPLOAD_FOLDER'], poster_pembuat_name))
+			share.save(os.path.join(app.config['UPLOAD_FOLDER'], share_name))
+			message = "https://chat.whatsapp.com/CAZ3dVQXOH25NBb823p1HC"
+			return render_template("persyaratan.html", message=message, user=auth)
