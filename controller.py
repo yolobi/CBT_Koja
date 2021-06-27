@@ -31,7 +31,7 @@ def register_form():
 
 			mysql.commit()
 			cur.close()
-			flash('You were successfully register')
+			flash('You were successfully registered')
 			return redirect(url_for('login'))
 
 
