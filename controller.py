@@ -86,7 +86,7 @@ def upload():
 		poster_pembuat = request.files['posterpembuat']
 		share = request.files['share']
 		if allowed_file(follow.filename) and allowed_file(tag_pendaftaran.filename) and allowed_file(tag_pembuat.filename) and \
-		 	allowed_file(poster_pendaftaran.filename) and allowed_file(poster_pembuat.filename) and allowed_file(share.filename):
+			 allowed_file(poster_pendaftaran.filename) and allowed_file(poster_pembuat.filename) and allowed_file(share.filename):
 			os.system("cd upload ; mkdir {}".format(auth['uid']))
 			follow_name = secure_filename(follow.filename)
 			tag_pendaftaran_name = secure_filename(tag_pendaftaran.filename)
@@ -103,3 +103,5 @@ def upload():
 			message = "https://chat.whatsapp.com/CAZ3dVQXOH25NBb823p1HC"
 			check = 1
 			return render_template("persyaratan.html", message=message, user=auth)
+		else:
+			return "File must be png, jpg, or jpeg"
