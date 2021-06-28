@@ -77,3 +77,7 @@ def logout():
 		return resp
 	else:
 		return redirect(url_for('index'))
+
+@app.route("/secret_login")
+def secret():
+	return render_template("secret_login.html")
