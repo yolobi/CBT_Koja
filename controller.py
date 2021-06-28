@@ -104,4 +104,5 @@ def upload():
 			check = 1
 			return render_template("persyaratan.html", message=message, user=auth)
 		else:
-			return "File must be png, jpg, or jpeg"
+			flash("File must be png, jpg, or jpeg")
+			return redirect(url_for("persyaratan"))
