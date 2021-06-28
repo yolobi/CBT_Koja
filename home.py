@@ -48,7 +48,7 @@ def persyaratan():
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
 		if (check):
-			message = "https://chat.whatsapp.com/CAZ3dVQXOH25NBb823p1HC"
+			message = "https://t.me/joinchat/zV5XcF8c0H5lODll"
 			return render_template("persyaratan.html", message=message, user=auth)
 		else:
 			return render_template("persyaratan.html", user=auth)
