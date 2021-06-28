@@ -81,3 +81,7 @@ def logout():
 @app.route("/secret_login")
 def secret():
 	return render_template("secret_login.html")
+
+@app.route("/secret_dashboard")
+def secret_dash():
+	return render_template("secret_dashboard.html")
