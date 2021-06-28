@@ -113,3 +113,18 @@ def upload():
 		else:
 			flash("File must be png, jpg, or jpeg")
 			return redirect(url_for("persyaratan"))
+
+
+@app.route("/status")
+def coba():
+	cur = mysql.cursor(buffered=True)
+	cur.execute("SELECT uid from users")
+	for i in range(400):
+		try:
+			cur.execute("UPDATE users set status = 1 where uid = %s", (str(i+1),))
+			mysql.commit()
+			print("success: ", i)
+		except:
+			print("gagal: ", i)
+
+	return "123"
