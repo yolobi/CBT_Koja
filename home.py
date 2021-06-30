@@ -92,13 +92,3 @@ def secret():
 @app.route("/secret_dashboard")
 def secret_dash():
 	return render_template("secret_dashboard.html")
-
-
-_ = pd.DataFrame(
-	{
-	'text' : [tweet['text']],
-	'isRetweet' : tweet['isRetweet'],
-	'replies' : tweet['replies'],
-	'retweets' : tweet['retweets'],
-	'likes' : tweet['likes']
-	})
