@@ -1,9 +1,8 @@
 from flask.helpers import make_response
 from app import app
 import jwt
+from db import mysql
 from flask import render_template, request, redirect, url_for
-
-check = 0
 
 @app.route("/")
 def index():
@@ -47,7 +46,11 @@ def persyaratan():
 		token = request.cookies.get('auth')
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
-		if (check):
+		cur = mysql.cursor(buffered=True)
+		cur.execute("SELECT status from users where uid = %s", (auth['uid'],))
+		rv = cur.fetchone()
+		check = rv[0]
+		if (check == 1):
 			message = "https://t.me/joinchat/zV5XcF8c0H5lODll"
 			return render_template("persyaratan.html", message=message, user=auth)
 		else:
@@ -77,6 +80,10 @@ def logout():
 		return resp
 	else:
 		return redirect(url_for('index'))
+
+@app.route("/forgot-password")
+def forgot():
+	return "Under building..."
 
 @app.route("/secret_login")
 def secret():

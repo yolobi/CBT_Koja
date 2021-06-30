@@ -98,7 +98,7 @@
                     {% if messages %}
                         <ul class=flashes>
                         {% for message in messages %}
-                            <a href="https://t.me/joinchat/zV5XcF8c0H5lODll">{{ message }}</a>
+                            <p>{{ message }}</p>
                         {% endfor %}
                         </ul>
                     {% endif %}
@@ -112,7 +112,7 @@
                     <div class="card-body">
                     
                     {% if message %}
-                    <p class=message> {{ message }} </p>
+                    <a href="{{ message }}">{{ message }}</a>
                     {% endif %}
                     </div> 
                 </div>

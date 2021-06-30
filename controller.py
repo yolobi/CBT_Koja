@@ -7,7 +7,6 @@ import hashlib
 import os
 import jwt
 import errno
-from home import check
 
 
 
@@ -107,24 +106,10 @@ def upload():
 			poster_pendaftaran.save(os.path.join(app.config['UPLOAD_FOLDER'], poster_pendaftaran_name))
 			poster_pembuat.save(os.path.join(app.config['UPLOAD_FOLDER'], poster_pembuat_name))
 			share.save(os.path.join(app.config['UPLOAD_FOLDER'], share_name))
-			message = "https://chat.whatsapp.com/CAZ3dVQXOH25NBb823p1HC"
-			check = 1
-			return render_template("persyaratan.html", message=message, user=auth)
+			cur = mysql.cursor(buffered=True)
+			cur.execute("UPDATE users set status = 1 where uid = %s", (auth['uid'],))
+			mysql.commit()
+			return redirect(url_for("persyaratan"))
 		else:
 			flash("File must be png, jpg, or jpeg")
 			return redirect(url_for("persyaratan"))
-
-
-@app.route("/status")
-def coba():
-	cur = mysql.cursor(buffered=True)
-	cur.execute("SELECT uid from users")
-	for i in range(400):
-		try:
-			cur.execute("UPDATE users set status = 1 where uid = %s", (str(i+1),))
-			mysql.commit()
-			print("success: ", i)
-		except:
-			print("gagal: ", i)
-
-	return "123"
