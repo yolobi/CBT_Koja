@@ -13,7 +13,7 @@ services:
       - MYSQL_DATABASE=koja
     networks:
       - python-network
-    command: ["--max_connections=10000"]
+    command: ["--max_connections=100000"]
   koja-flask:
     container_name: koja-flask
     build: .
