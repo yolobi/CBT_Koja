@@ -6,6 +6,7 @@ services:
     volumes:
       - .:/application
       - ./db/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./mysqlconf:/etc/mysql/conf.d
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=PlantZo@123
