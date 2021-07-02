@@ -63,7 +63,13 @@
             <div class="isi_page">
             <h2>UPLOAD PERSYARATAN</h2>
                 <div class="card">
-                    
+                    <div class="card-body">
+                    {% if message %}
+                    <a href="{{ message }}">{{ message }}</a>
+                    {% endif %}
+                    </div> 
+                </div>
+                <div class="card"> 
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         <ul class=flashes>
@@ -112,14 +118,7 @@
                         </form>
                 </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                    
-                    {% if message %}
-                    <a href="{{ message }}">{{ message }}</a>
-                    {% endif %}
-                    </div> 
-                </div>
+                
             </div>
             <div class="card">
                 *Poster dapat didownload di <a href="http://bit.ly/PosterOTONAS-P">bit.ly/PosterOTONAS-P</a>
