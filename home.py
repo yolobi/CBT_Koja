@@ -51,7 +51,7 @@ def persyaratan():
 		rv = cur.fetchone()
 		check = rv[0]
 		if (check == 1):
-			message = " Persyaratan sudah tersimpan, link grup: https://t.me/joinchat/zV5XcF8c0H5lODll"
+			message = "https://t.me/joinchat/zV5XcF8c0H5lODll"
 			return render_template("persyaratan.html", message=message, user=auth)
 		else:
 			return render_template("persyaratan.html", user=auth)
