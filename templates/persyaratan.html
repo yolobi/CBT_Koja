@@ -61,7 +61,10 @@
             </nav>
 
             <div class="isi_page">
-                {% with messages = get_flashed_messages() %}
+            <h2>UPLOAD PERSYARATAN</h2>
+                <div class="card">
+                    
+                    {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         <ul class=flashes>
                         {% for message in messages %}
@@ -71,7 +74,7 @@
                     {% endif %}
                     {% endwith %}
                     {% block body %}{% endblock %}
-            <h2>UPLOAD PERSYARATAN</h2>
+                </div>
                 <div class="card">
                     <div class="card-header text-center">
                       Upload Bukti Screenshot
