@@ -104,16 +104,7 @@
                             </div>
                     <div class="text-right">
                     <button type="submit" class="btn btn-primary pull-right">Save</button>
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <ul class=flashes>
-                        {% for message in messages %}
-                            <p>{{ message }}</p>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                    {% endwith %}
-                    {% block body %}{% endblock %}
+                    
                     </div>
                         </form>
                 </div>
