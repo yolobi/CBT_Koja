@@ -1,19 +1,5 @@
 version: "3"
 services:
-  mysql:
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
-    volumes:
-      - .:/application
-      - ./db/db.sql:/docker-entrypoint-initdb.d/db.sql
-      - ./mysqlconf:/etc/mysql/conf.d
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=PlantZo@123
-      - MYSQL_DATABASE=koja
-    networks:
-      - python-network
-    command: ["--max_connections=100000"]
   koja-flask:
     container_name: koja-flask
     build: .
@@ -24,13 +10,3 @@ services:
     environment:
       FLASK_ENV: development
     restart: always
-    depends_on:
-      - mysql
-    networks:
-      - python-network
-    links:
-      - mysql
-
-networks:
-  python-network:
-    driver: bridge
