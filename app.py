@@ -2,6 +2,7 @@ from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from datetime import timedelta
+from flask_mail import Mail
 
 
 
@@ -12,4 +13,14 @@ app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
 app.config['JWT_SECRET_KEY'] = '_5#y2L"F4Q8z\n\xec]/'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=3)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+#mail
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'riyanti.hersal@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Greyabuabu201!'
+
+mail = Mail(app)
 jwt = JWTManager(app)

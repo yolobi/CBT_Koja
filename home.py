@@ -83,7 +83,7 @@ def logout():
 
 @app.route("/forgot-password")
 def forgot():
-	return "Under building..."
+	return render_template("forgot_pass.html")
 
 @app.route("/secret_login")
 def secret():

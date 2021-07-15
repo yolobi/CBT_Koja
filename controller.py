@@ -1,14 +1,30 @@
-from app import app, bcrypt, jwt
+import re
+from app import app, bcrypt, jwt, mail
 from flask import jsonify, request, redirect, url_for, make_response, render_template, flash
 from werkzeug.utils import secure_filename
 from db import mysql
 from flask_jwt_extended import (create_access_token)
+from flask_mail import Message
+import time
+import datetime
 import hashlib
 import os
 import jwt
 import errno
 
 
+def create_token(email):
+	token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=1800)}, app.config.get('JWT_SECRET_KEY'))
+	return token
+
+def send_email(token, email):
+	msg = Message('Password Reset Request', 
+					sender='noreply@demo.com', 
+					recipients=[email])
+	msg.body = f'''To reset your password visit the following link:
+{url_for('reset_token', token=token, _external=True)}
+	'''
+	mail.send(msg)
 
 
 @app.route("/api/register", methods=['POST'])
@@ -113,3 +129,28 @@ def upload():
 		else:
 			flash("File must be png, jpg, or jpeg")
 			return redirect(url_for("persyaratan"))
+
+
+@app.route("/api/reset", methods = ['POST'])
+def reset():
+	if request.method == 'POST':
+		cur = mysql.cursor(buffered=True)
+		email = request.form['email']
+		cur.execute("SELECT 1 FROM users WHERE email=%s", (email,))
+		if cur.rowcount == 1:
+			token = create_token(email)
+			send_email(token,email)
+			return 'Success send'
+		else:
+			return 'Email doesn\'t exist!'
+
+@app.route("/forgot-password/<token>", methods = ["POST","GET"])
+def reset_token(token):
+	if request.method == 'GET':
+		try:
+			payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
+			return 'Return to link form forgot'
+		except:
+			return 'Link expired'
+	elif request.method == 'POST':
+		return '123'
