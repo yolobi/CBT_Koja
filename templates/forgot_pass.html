@@ -80,24 +80,15 @@
   <body>
     <div class="container" id="container">
 	   <div class="overlay"></div>
-   <form class="box" action="" method="POST">
+   <form class="box" action="/api/reset" method="POST">
        <div class="header">
-           <h3>Security Questions</h3>
+           <h3>Masukkan email dan nomor hp yang sesuai saat pendaftaran</h3>
        </div>
        <img class="tengah" src="../static/images/st.png" height="200px"/>
        <div class="login-area">
            <input type="email" class="username" placeholder="Email">
-           <a href="#popup" type="submit" value="submit" class="submit">Submit</a>
-						<div id="popup">
-							<div id="window">
-								<a href="signinrevisi.html" id="close-button" title="Close">X</a>
-								<div class="i">
-										   <img class="f" src="m2.png" height="200px"/>
-								</div>
-								<h3> Email Verification Link Has Been Send! </h3>
-								<p> We send verification link on your providing email address, please confirm your email address and login to your account. </p>
-							</div>      
-						</div>
+           <input type="email" class="username" placeholder="Email">
+           <button type="submit" class="btn btn-primary">submit</button>
 		</div>
    </form> 
   </div>
