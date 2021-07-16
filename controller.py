@@ -14,7 +14,7 @@ import errno
 
 
 def create_token(email):
-	token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=1800)}, app.config.get('JWT_SECRET_KEY'))
+	token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=18000)}, app.config.get('JWT_SECRET_KEY'))
 	return token
 
 def send_email(token, email):
@@ -149,8 +149,26 @@ def reset_token(token):
 	if request.method == 'GET':
 		try:
 			payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
-			return 'Return to link form forgot'
+			return render_template("new_password.html")
 		except:
 			return 'Link expired'
-	elif request.method == 'POST':
-		return '123'
+
+@app.route("/api/newpass", methods=['POST'])
+def newpassword():
+	if request.method == 'POST':
+		try:
+			cur = mysql.cursor(buffered=True)
+			password = request.form['password']
+			confirm_password = request.form['confirm_password']
+			if password == confirm_password:
+				referrer = request.headers.get("Referer").split("/")
+				token = referrer[4]
+				new_password = bcrypt.generate_password_hash(password).decode('utf-8')
+				payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
+				cur.execute("UPDATE users SET password = %s", (new_password,))
+				mysql.commit()
+				return 'Success reset password'
+			else:
+				return 'Password not match!'
+		except:
+			return 'Link expired!'
