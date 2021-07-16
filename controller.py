@@ -135,7 +135,7 @@ def upload():
 def reset():
 	if request.method == 'POST':
 		cur = mysql.cursor(buffered=True)
-		email = request.form['email']
+		email = request.form['email'].lower()
 		cur.execute("SELECT 1 FROM users WHERE email=%s", (email,))
 		if cur.rowcount == 1:
 			token = create_token(email)
