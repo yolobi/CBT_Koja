@@ -27,7 +27,17 @@
 								</div>
 
 								<div class="row form-group px-3">
-									<input  type="text" id="bidang" placeholder="Bidang" name="bidang">
+									<select name="bidang" id="bidang" class="form-select" style="border: 1rem; font-family: 'Poppins', sans-serif; font-size: 18px; float: left;" required="true">
+										<option value="matematika">Matematika</option>
+										<option value="fisika">Fisika</option>
+										<option value="kimia">Kimia</option>
+										<option value="biologi">Biologi</option>
+										<option value="komputer">Komputer</option>
+										<option value="astronomi">Astronomi</option>
+										<option value="geografi">Geografi</option>
+										<option value="kebumian">Kebumian</option>
+										<option value="ekonomi">Ekonomi</option>
+									</select>
 								</div>
 
 								<div class="row form-group px-3">
@@ -44,9 +54,6 @@
 
 								<div class="row form-group px-3">
 									<textarea id="soal" name="soal"></textarea>
-									<script>
-										CKEDITOR.replace('soal');
-									</script>
 								</div>
 
 								<div class="row form-group px-3">
@@ -95,7 +102,7 @@
 								</div>
 
 								<div class="row form-group px-3">
-									<input type="text" id="kunci" placeholder="Kunci" name="kunci">
+									<input type="text" id="kunci" placeholder="Kunci" name="untuk soal pg, kalo jawabannya a tulis a jangan A">
 								</div>
 
 								<div class="row px-3">
@@ -103,6 +110,14 @@
 										Masukkan Soal!
 									</button>
 								</div>
+								<script>
+										CKEDITOR.replace('soal');
+										CKEDITOR.replace('opsi_a');
+										CKEDITOR.replace('opsi_b');
+										CKEDITOR.replace('opsi_c');
+										CKEDITOR.replace('opsi_d');
+										CKEDITOR.replace('opsi_e');
+								</script>
 							</form>
 						</div>
 					</div>
