@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `astronomi`;
 CREATE TABLE `astronomi` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -55,13 +55,13 @@ DROP TABLE IF EXISTS `biologi`;
 CREATE TABLE `biologi` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -85,13 +85,13 @@ DROP TABLE IF EXISTS `ekonomi`;
 CREATE TABLE `ekonomi` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -116,13 +116,13 @@ DROP TABLE IF EXISTS `fisika`;
 CREATE TABLE `fisika` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,13 +146,13 @@ DROP TABLE IF EXISTS `geografi`;
 CREATE TABLE `geografi` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -176,13 +176,13 @@ DROP TABLE IF EXISTS `kebumian`;
 CREATE TABLE `kebumian` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -207,13 +207,13 @@ DROP TABLE IF EXISTS `kimia`;
 CREATE TABLE `kimia` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -237,13 +237,13 @@ DROP TABLE IF EXISTS `komputer`;
 CREATE TABLE `komputer` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -268,13 +268,13 @@ DROP TABLE IF EXISTS `matematika`;
 CREATE TABLE `matematika` (
   `id` int NOT NULL,
   `soal` text NOT NULL,
-  `opsi_A` varchar(255) DEFAULT NULL,
-  `opsi_B` varchar(255) DEFAULT NULL,
-  `opsi_C` varchar(255) DEFAULT NULL,
-  `opsi_D` varchar(255) DEFAULT NULL,
-  `opsi_E` varchar(255) DEFAULT NULL,
+  `opsi_A` text DEFAULT NULL,
+  `opsi_B` text DEFAULT NULL,
+  `opsi_C` text DEFAULT NULL,
+  `opsi_D` text DEFAULT NULL,
+  `opsi_E` text DEFAULT NULL,
   `point` int NOT NULL,
-  `kj` varchar(255) DEFAULT NULL,
+  `kj` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

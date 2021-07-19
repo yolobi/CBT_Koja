@@ -47,6 +47,6 @@ def add_soal():
 			cur.execute("INSERT INTO `ekonomi` (id, soal, opsi_A, opsi_B, opsi_C, opsi_D, opsi_E, point, kj) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (nomor, soal, opsi_a, opsi_b, opsi_c, opsi_d, opsi_e, point, kj))
 		mysql.commit()
 		cur.close()
-		msg = "Success added soal no {}".format(nomor)
+		msg = "Success added soal {} no {}".format(bidang, nomor)
 		flash(msg)
 		return redirect(url_for('admin_page'))
