@@ -140,9 +140,11 @@ def reset():
 		if cur.rowcount == 1:
 			token = create_token(email)
 			send_email(token,email)
-			return 'Success send'
+			flash('Success! please check your email')
+			return redirect(url_for("forgot_password"))
 		else:
-			return 'Email doesn\'t exist!'
+			flash('Email doesn\'t exist!')
+			return redirect(url_for("forgot_password"))
 
 @app.route("/forgot-password/<token>", methods = ["POST","GET"])
 def reset_token(token):
@@ -160,15 +162,17 @@ def newpassword():
 			cur = mysql.cursor(buffered=True)
 			password = request.form['password']
 			confirm_password = request.form['confirm_password']
+			referrer = request.headers.get("Referer").split("/")
+			token = referrer[4]
 			if password == confirm_password:
-				referrer = request.headers.get("Referer").split("/")
-				token = referrer[4]
 				new_password = bcrypt.generate_password_hash(password).decode('utf-8')
 				payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 				cur.execute("UPDATE users SET password = %s", (new_password,))
 				mysql.commit()
-				return 'Success reset password'
+				flash("Success reset password try to login now")
+				return redirect(url_for("login"))
 			else:
-				return 'Password not match!'
+				flash("Password not match!")
+				return redirect(url_for("reset_token", token=token))
 		except:
 			return 'Link expired!'

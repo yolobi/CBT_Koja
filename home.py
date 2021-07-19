@@ -82,7 +82,7 @@ def logout():
 		return redirect(url_for('index'))
 
 @app.route("/forgot-password")
-def forgot():
+def forgot_password():
 	return render_template("forgot_pass.html")
 
 @app.route("/secret_login")

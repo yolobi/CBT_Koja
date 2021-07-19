@@ -1,0 +1,5 @@
+digitani_redis:
+    image: redis:alpine
+    command: redis-server --requirepass ${DOCKER_REDIS_PASSWORD}
+    networks:
+      - digitani_network

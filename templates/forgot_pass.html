@@ -82,7 +82,17 @@
 	   <div class="overlay"></div>
    <form class="box" action="/api/reset" method="POST">
        <div class="header">
-           <h3>Masukkan email dan nomor hp yang sesuai saat pendaftaran</h3>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul class=flashes>
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+				</ul>
+			{% endif %}
+			{% endwith %}
+			{% block body %}{% endblock %}
+           <h3>Masukkan email yang sesuai saat pendaftaran</h3>
        </div>
        <img class="tengah" src="../static/images/st.png" height="200px"/>
        <div class="login-area">

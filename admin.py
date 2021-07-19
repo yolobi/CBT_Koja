@@ -7,4 +7,4 @@ import jwt
 
 @app.route('/admin/page', methods=['GET'])
 def page():
-	return render_template('admin.html')
+	return render_template('upload_soal.html')
