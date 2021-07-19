@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.25, for Linux (x86_64)
 --
--- Host: 172.19.0.2    Database: koja
+-- Host: 172.24.0.2    Database: koja
 -- ------------------------------------------------------
 -- Server version	8.0.25
 
@@ -14,6 +14,276 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `astronomi`
+--
+
+DROP TABLE IF EXISTS `astronomi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `astronomi` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `astronomi`
+--
+
+LOCK TABLES `astronomi` WRITE;
+/*!40000 ALTER TABLE `astronomi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `astronomi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `biologi`
+--
+
+DROP TABLE IF EXISTS `biologi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `biologi` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `biologi`
+--
+
+LOCK TABLES `biologi` WRITE;
+/*!40000 ALTER TABLE `biologi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `biologi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ekonomi`
+--
+
+DROP TABLE IF EXISTS `ekonomi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ekonomi` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ekonomi`
+--
+
+LOCK TABLES `ekonomi` WRITE;
+/*!40000 ALTER TABLE `ekonomi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ekonomi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fisika`
+--
+
+DROP TABLE IF EXISTS `fisika`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `fisika` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fisika`
+--
+
+LOCK TABLES `fisika` WRITE;
+/*!40000 ALTER TABLE `fisika` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fisika` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `geografi`
+--
+
+DROP TABLE IF EXISTS `geografi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `geografi` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `geografi`
+--
+
+LOCK TABLES `geografi` WRITE;
+/*!40000 ALTER TABLE `geografi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `geografi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `kebumian`
+--
+
+DROP TABLE IF EXISTS `kebumian`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `kebumian` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kebumian`
+--
+
+LOCK TABLES `kebumian` WRITE;
+/*!40000 ALTER TABLE `kebumian` DISABLE KEYS */;
+/*!40000 ALTER TABLE `kebumian` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `kimia`
+--
+
+DROP TABLE IF EXISTS `kimia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `kimia` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kimia`
+--
+
+LOCK TABLES `kimia` WRITE;
+/*!40000 ALTER TABLE `kimia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `kimia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `komputer`
+--
+
+DROP TABLE IF EXISTS `komputer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `komputer` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `komputer`
+--
+
+LOCK TABLES `komputer` WRITE;
+/*!40000 ALTER TABLE `komputer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `komputer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `matematika`
+--
+
+DROP TABLE IF EXISTS `matematika`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `matematika` (
+  `id` int NOT NULL,
+  `soal` text NOT NULL,
+  `opsi_A` varchar(255) DEFAULT NULL,
+  `opsi_B` varchar(255) DEFAULT NULL,
+  `opsi_C` varchar(255) DEFAULT NULL,
+  `opsi_D` varchar(255) DEFAULT NULL,
+  `opsi_E` varchar(255) DEFAULT NULL,
+  `point` int NOT NULL,
+  `kj` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `matematika`
+--
+
+LOCK TABLES `matematika` WRITE;
+/*!40000 ALTER TABLE `matematika` DISABLE KEYS */;
+/*!40000 ALTER TABLE `matematika` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -54,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-19  4:57:13
+-- Dump completed on 2021-07-19 12:56:02
