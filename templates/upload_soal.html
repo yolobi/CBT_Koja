@@ -12,6 +12,16 @@
     <script src="../static/ckeditor/ckeditor.js"></script>
 </head>
 <body>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	{% endwith %}
+	{% block body %}{% endblock %}
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-8">

@@ -1,12 +1,13 @@
+from flask.helpers import url_for
 from app import app, bcrypt
 from db import mysql
-from flask import request, redirect, jsonify, render_template
+from flask import request, redirect, jsonify, render_template, flash
 import json
 import jwt
 
 
 @app.route('/admin/1c096d6e413c588e44cb9031d03b012f', methods=['GET'])
-def page():
+def admin_page():
 	return render_template('upload_soal.html')
 
 
@@ -18,13 +19,13 @@ def add_soal():
 		bidang = data['bidang']
 		nomor = data['no_soal']
 		soal = data['soal'].replace('\r\n', '')
-		opsi_a = data['opsi_a'].lower()
-		opsi_b = data['opsi_b'].lower()
-		opsi_c = data['opsi_c'].lower()
-		opsi_d = data['opsi_d'].lower()
-		opsi_e = data['opsi_e'].lower()
+		opsi_a = data['opsi_a'].replace('\r\n', '')
+		opsi_b = data['opsi_b'].replace('\r\n', '')
+		opsi_c = data['opsi_c'].replace('\r\n', '')
+		opsi_d = data['opsi_d'].replace('\r\n', '')
+		opsi_e = data['opsi_e'].replace('\r\n', '')
 		point = data['bobot']
-		kj = data['kunci']
+		kj = data['kunci'].lower()
 		print(data)
 		if bidang == 'matematika':
 			cur.execute("INSERT INTO `matematika` (id, soal, opsi_A, opsi_B, opsi_C, opsi_D, opsi_E, point, kj) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (nomor, soal, opsi_a, opsi_b, opsi_c, opsi_d, opsi_e, point, kj))
@@ -46,4 +47,6 @@ def add_soal():
 			cur.execute("INSERT INTO `ekonomi` (id, soal, opsi_A, opsi_B, opsi_C, opsi_D, opsi_E, point, kj) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (nomor, soal, opsi_a, opsi_b, opsi_c, opsi_d, opsi_e, point, kj))
 		mysql.commit()
 		cur.close()
-		return '123'
+		msg = "Success added soal no {}".format(nomor)
+		flash(msg)
+		return redirect(url_for('admin_page'))
