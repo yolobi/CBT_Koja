@@ -3,8 +3,6 @@ function pindah(bidang_id, len) {
   var page = bidang_id;
   var pageCount = len;
 
-  console.log(bidang_id);
-
   document.getElementById("btnPrev").onclick = function() {
     page = ((page + pageCount + 1) % pageCount) + 1;
     window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/'+page;
@@ -14,18 +12,19 @@ function pindah(bidang_id, len) {
     window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/'+page;
   };
 
-  console.log(page);
 };
 
 function navigasi(bidang_id){
   "use strict";
   var page = bidang_id;
-
-  console.log(bidang_id);
-
-  document.getElementById("navigasi").onclick = function() {
-    window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/'+page;
-  };
-
   console.log(page);
+  window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/'+page;
+
+};
+
+function essai(){
+  "use strict";
+  document.getElementById("essai").onclick = function(){
+  window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/essai';
+  };
 };
