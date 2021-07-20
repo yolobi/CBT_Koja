@@ -3,6 +3,7 @@ from home import *
 from controller import *
 from db import *
 from admin import *
+from soal import *
 from flask_cors import CORS
 
 CORS(app)
