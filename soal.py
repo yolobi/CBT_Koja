@@ -1,8 +1,11 @@
+from flask.templating import render_template_string
 from app import app, bcrypt, jwt
 from db import mysql
-from flask import request, redirect, jsonify, render_template
+from flask import request, redirect, jsonify, render_template, make_response
 import jwt
 import json
+
+
 
 @app.route("/komputer/<id>", methods=['GET'])
 def komputer(id):
@@ -20,8 +23,12 @@ def komputer(id):
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
-            print(res)
-            return jsonify(res)
+            if res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '' and res['kj'] != 'essai':
+                return render_template("isian_singkat.html", user=auth, bidang=res)
+            else:
+                return render_template("pilihan_ganda.html", user=auth, bidang=res)
+        else:
+            return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
         return render_template("index.html", error=error)

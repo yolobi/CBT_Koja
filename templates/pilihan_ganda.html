@@ -24,7 +24,7 @@
 </head>
 
 <body>
-
+    {% autoescape false %}
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -36,7 +36,7 @@
             </div>
 
             <ul class="list-unstyled components px-3">
-                <button type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{bidang.id_soal}}</button>
+                <button type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{bidang.id}}</button>
             </ul>
 
         </nav>
@@ -49,7 +49,7 @@
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-justify"></i>
-                        <span>Soal {{bidang.id_soal}}</span>
+                        <span>Soal {{bidang.soal}}</span>
                     </button>
 
                     <header><h3>OTONAS-P KOJA 2021</h3></header>
@@ -103,6 +103,7 @@
           });
       });
   </script>
+  {% endautoescape %}
 </body>
 
 </html>
