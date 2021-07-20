@@ -1,5 +1,5 @@
 from flask.helpers import make_response
-from app import app
+from app import app, cache
 import jwt
 from db import mysql
 from flask import render_template, request, redirect, url_for
@@ -17,6 +17,7 @@ def login():
 	return render_template("login.html")
 
 @app.route("/home", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def home():
 	if (request.method == 'GET' and request.cookies.get("auth")):
 		token = request.cookies.get('auth')
@@ -30,6 +31,7 @@ def home():
 		return render_template("index.html", error=error)
 
 @app.route("/profile", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def profile():
 	if (request.method == 'GET' and request.cookies.get("auth")):
 		token = request.cookies.get('auth')
@@ -41,6 +43,7 @@ def profile():
 		return render_template("index.html", error=error)
 
 @app.route("/persyaratan")
+@cache.cached(timeout=30, query_string=True)
 def persyaratan():
 	if (request.method == 'GET' and request.cookies.get("auth")):
 		token = request.cookies.get('auth')
@@ -60,6 +63,7 @@ def persyaratan():
 		return render_template("index.html", error=error)
 
 @app.route("/editbiodata")
+@cache.cached(timeout=30, query_string=True)
 def edit_bio():
 	if (request.method == 'GET' and request.cookies.get("auth")):
 		token = request.cookies.get('auth')
@@ -82,6 +86,7 @@ def logout():
 		return redirect(url_for('index'))
 
 @app.route("/forgot-password")
+@cache.cached(timeout=30, query_string=True)
 def forgot_password():
 	return render_template("forgot_pass.html")
 

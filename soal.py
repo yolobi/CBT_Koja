@@ -1,5 +1,5 @@
 from flask.templating import render_template_string
-from app import app, bcrypt, jwt
+from app import app, bcrypt, jwt, cache
 from db import mysql
 from flask import request, redirect, jsonify, render_template, make_response
 import jwt
@@ -8,6 +8,7 @@ import json
 
 
 @app.route("/komputer/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def komputer(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -37,6 +38,7 @@ def komputer(id):
 
 
 @app.route("/matematika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def matematika(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -66,6 +68,7 @@ def matematika(id):
 
 
 @app.route("/biologi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def biologi(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -95,6 +98,7 @@ def biologi(id):
 
     
 @app.route("/kimia/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def kimia(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -124,6 +128,7 @@ def kimia(id):
 
 
 @app.route("/astronomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def astronomi(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -153,6 +158,7 @@ def astronomi(id):
 
 
 @app.route("/fisika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def fisika(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -182,6 +188,7 @@ def fisika(id):
 
 
 @app.route("/ekonomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def ekonomi(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -210,6 +217,7 @@ def ekonomi(id):
         return render_template("index.html", error=error)
 
 @app.route("/geografi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def geografi(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
@@ -239,6 +247,7 @@ def geografi(id):
 
 
 @app.route("/kebumian/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@cache.cached(timeout=30, query_string=True)
 def kebumian(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')

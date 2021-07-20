@@ -1,5 +1,5 @@
 import re
-from app import app, bcrypt, jwt, mail
+from app import app, bcrypt, jwt, mail, cache
 from flask import jsonify, request, redirect, url_for, make_response, render_template, flash
 from werkzeug.utils import secure_filename
 from db import mysql
@@ -147,6 +147,7 @@ def reset():
 			return redirect(url_for("forgot_password"))
 
 @app.route("/forgot-password/<token>", methods = ["POST","GET"])
+@cache.cached(timeout=30, query_string=True)
 def reset_token(token):
 	if request.method == 'GET':
 		try:

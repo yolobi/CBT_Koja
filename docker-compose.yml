@@ -25,3 +25,8 @@ services:
       - mysql
     links:
       - mysql
+  redis:
+    image: redis
+    container_name: koja-redis
+    ports:
+      - "6379:6379"
