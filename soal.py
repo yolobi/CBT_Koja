@@ -7,7 +7,7 @@ import json
 
 
 
-@app.route("/komputer/<id>", methods=['GET'])
+@app.route("/komputer/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 def komputer(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
