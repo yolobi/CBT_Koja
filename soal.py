@@ -18,8 +18,8 @@ def komputer(id):
         if auth['bidang'] == 'komputer':
             cur = mysql.cursor(buffered=True)
             cur.execute("SELECT id from komputer")
-            total = cur.fetchall()
-            print(len(total))
+            total = len(cur.fetchall())
+            print("total: ", total)
             cur.execute("SELECT * FROM komputer where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()

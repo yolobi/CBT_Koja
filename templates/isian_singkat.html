@@ -37,8 +37,8 @@
             </div>
 
             <ul class="list-unstyled components px-3">
-                {% for i in len %}
-                    <button type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{bidang.id}}</button>
+                {% for i in range(len) %}
+                    <button type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{i+1}}</button>
                 {% endfor %}
             </ul>
 
