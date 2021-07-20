@@ -66,7 +66,7 @@ def matematika(id):
 
 
 @app.route("/biologi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-def matematika(id):
+def biologi(id):
     if (request.method == 'GET' and request.cookies.get("auth")):
         token = request.cookies.get('auth')
         payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
