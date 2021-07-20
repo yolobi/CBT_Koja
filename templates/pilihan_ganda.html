@@ -20,6 +20,7 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="/static/js/pindah.js"></script>
 
 </head>
 
@@ -36,7 +37,9 @@
             </div>
 
             <ul class="list-unstyled components px-3">
-                <button type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{bidang.id}}</button>
+                {% for i in range(len) %}
+                    <button id="navigasi" onclick="navigasi({{i+1}})" type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{i+1}}</button>
+                {% endfor %}
             </ul>
 
         </nav>
@@ -46,15 +49,14 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-justify"></i>
-                        <span>Soal {{bidang.soal}}</span>
+                        <span>Soal {{bidang.id}}</span>
                     </button>
 
                     <header><h3>OTONAS-P KOJA 2021</h3></header>
                     <a href="#" class="navbar-brand">
-                        <img src="../static/images/koja.png" height="45" alt="#">
+                        <img src="/static/images/koja.png" height="45" alt="#">
                     </a>
                 </div>
             </nav>
@@ -74,8 +76,8 @@
                     <a href="#">clear my choice</a>
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary">Soal Sebelumnya</button>
-                    <button type="button" class="btn btn-primary">Soal Selanjutnya</button>
+                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnPrev" value="Previous">
+                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnNext" value="Next">
                 </div>
             </div>
         </div>

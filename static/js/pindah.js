@@ -16,3 +16,16 @@ function pindah(bidang_id, len) {
 
   console.log(page);
 };
+
+function navigasi(bidang_id){
+  "use strict";
+  var page = bidang_id;
+
+  console.log(bidang_id);
+
+  document.getElementById("navigasi").onclick = function() {
+    window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/'+page;
+  };
+
+  console.log(page);
+};
