@@ -17,6 +17,9 @@ def komputer(id):
         print(auth['bidang'])
         if auth['bidang'] == 'komputer':
             cur = mysql.cursor(buffered=True)
+            cur.execute("SELECT id from komputer")
+            total = cur.fetchall()
+            print(len(total))
             cur.execute("SELECT * FROM komputer where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -25,11 +28,11 @@ def komputer(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total)
         else:
             return 'Bidang anda tidak sesuai'
     else:
