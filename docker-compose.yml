@@ -11,8 +11,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=PlantZo@123
       - MYSQL_DATABASE=koja
-    networks:
-      - python-network
   koja-flask:
     container_name: koja-flask
     build: .
@@ -25,11 +23,5 @@ services:
     restart: always
     depends_on:
       - mysql
-    networks:
-      - python-network
     links:
       - mysql
-
-networks:
-  python-network:
-    driver: bridge
