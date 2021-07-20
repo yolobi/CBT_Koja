@@ -12,7 +12,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/styles.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -20,6 +20,7 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="/static/js/pindah.js"></script>
 
 </head>
 
@@ -36,7 +37,9 @@
             </div>
 
             <ul class="list-unstyled components px-3">
-                <button type="button" class="btn btn-light px-3 py-2 h-10 w-10">1</button>
+                {% for i in len %}
+                    <button type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{bidang.id}}</button>
+                {% endfor %}
             </ul>
 
         </nav>
@@ -54,7 +57,7 @@
 
                     <header><h3>OTONAS-P KOJA 2021</h3></header>
                     <a href="#" class="navbar-brand">
-                        <img src="../static/images/koja.png" height="45" alt="#">
+                        <img src="/static/images/koja.png" height="45" alt="#">
                     </a>
                 </div>
             </nav>
@@ -69,8 +72,8 @@
                     <br>
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary">Soal Sebelumnya</button>
-                    <button type="button" class="btn btn-primary">Soal Selanjutnya</button>
+                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnPrev" value="Previous">
+                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnNext" value="Next">
                 </div>
             </div>
         </div>
