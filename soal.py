@@ -324,7 +324,8 @@ def upload_essay(bidang):
     auth = payload['sub']
     if auth['bidang'] != bidang:
         return 'Bidang anda tidak sesuai'
-    return render_template("essay.html", user=auth)
+    total = total_soal[bidang]
+    return render_template("essay.html", user=auth, len=total)
 
 
 @app.route("/api/finish", methods=['POST'])
