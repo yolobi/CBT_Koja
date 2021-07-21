@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -62,6 +61,18 @@
                     </a>
                 </div>
             </nav>
+            <div>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                {% block body %}{% endblock %}
+            </div>
             <!-- ini nanti sesuain sama bidangnya-->
             <!--
             <div class="card" style="width: 18rem; margin-left: 2cm; background-color: #649BBC;">

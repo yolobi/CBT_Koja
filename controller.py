@@ -14,7 +14,7 @@ import errno
 
 
 def create_token(email):
-	token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=18000)}, app.config.get('JWT_SECRET_KEY'))
+	token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=180)}, app.config.get('JWT_SECRET_KEY'))
 	return token
 
 def send_email(token, email):
@@ -72,10 +72,12 @@ def login_form():
 				print(access_token)
 				return response
 			else:
+				print("Masuk salah")
 				flash('Invalid username or password')
 				return redirect(url_for("login"))
 
 		except:
+			print("Masuk erro")
 			flash('Invalid username or password')
 			return redirect(url_for("login"))
 
@@ -168,7 +170,7 @@ def newpassword():
 			if password == confirm_password:
 				new_password = bcrypt.generate_password_hash(password).decode('utf-8')
 				payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
-				cur.execute("UPDATE users SET password = %s", (new_password,))
+				cur.execute("UPDATE users SET password = %s where email = %s", (new_password,payload['email'],))
 				mysql.commit()
 				flash("Success reset password try to login now")
 				return redirect(url_for("login"))
