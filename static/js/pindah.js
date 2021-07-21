@@ -28,7 +28,7 @@ function essai(bidang){
   window.location.href='http://localhost/'+bidang+'/essay';
 };
 
-function finish(bidang){
+function selesai(bidang){
   "use strict"
   window.location.href='http://localhost/'+bidang+'/finish';
 }
