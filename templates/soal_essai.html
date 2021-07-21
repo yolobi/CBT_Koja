@@ -70,8 +70,8 @@
                 </div>
                 
                 <div class="card-body">
-                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }}, user.bidang )" type="button" id="btnPrev" value="Previous">
-                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }}, {{user.bidang}} )" type="button" id="btnNext" value="Next">
+                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnPrev" value="Previous">
+                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnNext" value="Next">
                 </div>
             </div>
         </div>
