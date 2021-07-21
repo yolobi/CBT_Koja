@@ -25,9 +25,7 @@ function navigasi(bidang_id){
 
 function essai(bidang){
   "use strict";
-  document.getElementById("essai").onclick = function(){
   window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/essai';
-  };
 };
 
 function clear(){

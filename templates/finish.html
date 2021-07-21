@@ -57,15 +57,16 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-justify"></i>
-                        <span>Soal {{bidang.id}}</span>
-                    </button>
 
-                    <header><h3>OTONAS-P KOJA 2021</h3></header>
-                    <a href="#" class="navbar-brand">
-                        <img src="/static/images/koja.png" height="45" alt="#">
-                    </a>
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                            <i class="fas fa-align-justify"></i>
+                            <span>Soal {{bidang.id}}</span>
+                        </button>
+
+                        <header><h3>OTONAS-P KOJA 2021</h3></header>
+                        <a href="#" class="navbar-brand">
+                            <img src="/static/images/koja.png" height="45" alt="#">
+                        </a>
                 </div>
             </nav>
             <div class="card" style="margin: 2cm;">
@@ -73,18 +74,12 @@
                     {{bidang.soal}}
                 </div>
                 <div class="card-body">
-                    <form>
-                        <input type="radio" name="opsi" value="a">A. {{bidang.opsi_A}} <br>
-                        <input type="radio" name="opsi" value="b">B. {{bidang.opsi_B}} <br>
-                        <input type="radio" name="opsi" value="c">C. {{bidang.opsi_C}} <br>
-                        <input type="radio" name="opsi" value="d">D. {{bidang.opsi_D}} <br>
-                        <input type="radio" name="opsi" value="e">E. {{bidang.opsi_E}} <br>
-                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_pg({{bidang.id}})">Simpan</button>
+                    <form action="/api/finish" method="POST" id="form-submit-jawaban">
+  
+                      <button type="submit">Selesai</button>
+                      <p>Klik tombol di atas untuk selesai mengerjakan tryout</p>
                     </form>
-                </div>
-                <div class="card-body">
-                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }})" type="button" id="btnPrev" value="Previous">
-                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }})" type="button" id="btnNext" value="Next">
+
                 </div>
             </div>
         </div>
