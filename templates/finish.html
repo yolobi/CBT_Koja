@@ -39,7 +39,7 @@
 
             <ul class="list-unstyled components px-3">
                 {% for i in range(len) %}
-                    <button id="navigasi" onclick="navigasi({{i+1}})" type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{i+1}}</button>
+                    <button id="navigasi" onclick="navigasi({{i+1}})" type="button" class="btn btn-light h-5 w-5" style="height: 18%; width: 18%">{{i+1}}</button>
                 {% endfor %}
             </ul>
             <ul class="list-unstyled components px-3">
@@ -71,7 +71,7 @@
             </nav>
             <div class="card" style="margin: 2cm;">
                 <div class="card-body">
-                    <form action="/api/finish" method="POST" id="form-submit-jawaban">
+                    <form action="/api/send" method="POST" id="form-submit-jawaban">
   
                       <button type="submit">Selesai</button>
                       <p>Klik tombol di atas untuk selesai mengerjakan tryout</p>

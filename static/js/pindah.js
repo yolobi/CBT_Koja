@@ -16,20 +16,19 @@ function prev(bidang_id, len, bidang) {
   window.location.href='http://localhost/'+bidang+'/1c096d6e413c588e44cb9031d03b012f/'+page;
 }
 
-function navigasi(bidang_id){
+function navigasi(bidang_id, bidang){
   "use strict";
   var page = bidang_id;
-  window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/'+page;
+  window.location.href='http://localhost/'+bidang+'/1c096d6e413c588e44cb9031d03b012f/'+page;
 
 };
 
 function essai(bidang){
   "use strict";
-  window.location.href='http://localhost/komputer/1c096d6e413c588e44cb9031d03b012f/essai';
+  window.location.href='http://localhost/'+bidang+'/essay';
 };
 
-function clear(){
-  var ele = document.getElementsByName("opsi");
-  for(var i=0;i<ele.length;i++)
-      ele[i].checked = false;
+function finish(bidang){
+  "use strict"
+  window.location.href='http://localhost/'+bidang+'/finish';
 }

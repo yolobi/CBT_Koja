@@ -38,10 +38,16 @@
 
             <ul class="list-unstyled components px-3">
                 {% for i in range(len) %}
-                    <button id="navigasi" onclick="navigasi({{i+1}}, {{user.bidang}})" type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{i+1}}</button>
+                    <button id="navigasi" onclick="navigasi({{i+1}}, '{{ user.bidang }}')" type="button" class="btn btn-light h-5 w-5" style="height: 18%; width: 18%">{{i+1}}</button>
                 {% endfor %}
             </ul>
+            <ul class="list-unstyled components px-3">
+                <button type="button" onclick="essai('{{ user.bidang }}')" class="btn btn-light px-3 py-2 h-10 w-10">Essai</button>
+            </ul>
 
+            <ul class="list-unstyled components px-3">
+                <button type="button" onclick="finish('{{ user.bidang }}')" class="btn btn-danger px-3 py-2 h-10 w-10">Submit</button>
+            </ul>
         </nav>
 
         <!-- Page Content  -->
@@ -52,7 +58,7 @@
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-justify"></i>
-                        <span>Soal {{bidang.id}}</span>
+                        <span>Upload Jawaban Essay</span>
                     </button>
 
                     <header><h3>OTONAS-P KOJA 2021</h3></header>
@@ -62,17 +68,14 @@
                 </div>
             </nav>
             <div class="alert alert-secondary" style="margin: 1cm;">
-                    Silakan upload jawaban untuk semua soal essai (dijadikan 1 file).
+                    Silakan upload jawaban untuk semua soal essai (dijadikan 1 file pdf).
             </div>
             <div class="card" style="margin: 2cm;">
                 <div class="card-body">
-                    File yang diizinkan untuk diupload (..., ..., ...)
                     <form action="">
                         <input type="file">
                     </form>
                 </div>
-                <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnPrev" value="Previous">
-                <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnNext" value="Next">
             </div>
         </div>
     </div>
