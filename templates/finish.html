@@ -60,7 +60,7 @@
 
                         <button type="button" id="sidebarCollapse" class="btn btn-info">
                             <i class="fas fa-align-justify"></i>
-                            <span>Soal {{bidang.id}}</span>
+                            <span>Finish</span>
                         </button>
 
                         <header><h3>OTONAS-P KOJA 2021</h3></header>
@@ -71,15 +71,26 @@
             </nav>
             <div class="card" style="margin: 2cm;">
                 <div class="card-body">
-                    {{bidang.soal}}
-                </div>
-                <div class="card-body">
                     <form action="/api/finish" method="POST" id="form-submit-jawaban">
   
                       <button type="submit">Selesai</button>
                       <p>Klik tombol di atas untuk selesai mengerjakan tryout</p>
                     </form>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", function() {
+                          const formSubmitJawaban = document.getElementById("form-submit-jawaban")
+                          const totalJawaban = {{ len }}; // ini ganti value nya sesuai total soal
 
+                          for(let i = 0; i < totalJawaban; i++) {
+                              let key = i+1 // sesuaikan key nya
+                              let inputHidden = document.createElement("input")
+                              inputHidden.setAttribute("type", "hidden")
+                              inputHidden.setAttribute("name", key)
+                              inputHidden.setAttribute("value", localStorage.getItem(key))
+                              formSubmitJawaban.appendChild(inputHidden)
+                          }
+                      })
+                      </script>
                 </div>
             </div>
         </div>
