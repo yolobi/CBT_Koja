@@ -6,6 +6,17 @@ import jwt
 import json
 
 
+total_soal = {
+    'matematika': 20,
+    'komputer': 40,
+    'fisika': 7,
+    'kebumian': 45,
+    'astronomi': 7,
+    'ekonomi': 55,
+    'kimia': 90,
+    'geografi': 55,
+    'biologi': 50,
+}
 
 @app.route("/komputer/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
@@ -18,8 +29,7 @@ def komputer(id):
         print(auth['bidang'])
         if auth['bidang'] == 'komputer':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from komputer")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM komputer where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -51,8 +61,7 @@ def matematika(id):
         print(auth['bidang'])
         if auth['bidang'] == 'matematika':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from matematika")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             print(total)
             cur.execute("SELECT * FROM matematika where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -85,8 +94,7 @@ def biologi(id):
         print(auth['bidang'])
         if auth['bidang'] == 'biologi':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from biologi")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM biologi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -117,8 +125,7 @@ def kimia(id):
         print(auth['bidang'])
         if auth['bidang'] == 'kimia':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from kimia")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM kimia where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -150,8 +157,7 @@ def astronomi(id):
         print(auth['bidang'])
         if auth['bidang'] == 'astronomi':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from astronomi")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM astronomi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -183,8 +189,7 @@ def fisika(id):
         print(auth['bidang'])
         if auth['bidang'] == 'fisika':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from fisika")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM fisika where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -216,8 +221,7 @@ def ekonomi(id):
         print(auth['bidang'])
         if auth['bidang'] == 'ekonomi':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from ekonomi")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM ekonomi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -248,8 +252,7 @@ def geografi(id):
         print(auth['bidang'])
         if auth['bidang'] == 'geografi':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from geografi")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM geografi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -281,8 +284,7 @@ def kebumian(id):
         print(auth['bidang'])
         if auth['bidang'] == 'kebumian':
             cur = mysql.cursor(buffered=True)
-            cur.execute("SELECT id from kebumian")
-            total = len(cur.fetchall())
+            total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM kebumian where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
@@ -310,7 +312,9 @@ def finish_attempt(bidang):
     auth = payload['sub']
     if auth['bidang'] != bidang:
         return 'Bidang anda tidak sesuai'
-    return render_template("finish.html")
+    total = total_soal[bidang]
+    print('total123:',total)
+    return render_template("finish.html", user=auth, len=total)
 
 @app.route("/<bidang>/essay")
 def upload_essay(bidang):
