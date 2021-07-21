@@ -38,7 +38,7 @@
 
             <ul class="list-unstyled components px-3">
                 {% for i in range(len) %}
-                    <button id="navigasi" onclick="navigasi({{i+1}})" type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{i+1}}</button>
+                    <button id="navigasi" onclick="navigasi({{i+1}}, {{user.bidang}})" type="button" class="btn btn-light px-3 py-2 h-10 w-10">{{i+1}}</button>
                 {% endfor %}
             </ul>
 
@@ -71,8 +71,8 @@
                         <input type="file">
                     </form>
                 </div>
-                <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnPrev" value="Previous">
-                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnNext" value="Next">
+                <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }}, user.bidang )" type="button" id="btnPrev" value="Previous">
+                <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }}, {{user.bidang}} )" type="button" id="btnNext" value="Next">
             </div>
         </div>
     </div>

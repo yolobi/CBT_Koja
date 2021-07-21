@@ -72,12 +72,10 @@
                         <input type="radio" name="opsi" value="d">D. {{bidang.opsi_D}} <br>
                         <input type="radio" name="opsi" value="e">E. {{bidang.opsi_E}} <br>
                     </form>
-                    <br>
-                    <a href="#">clear my choice</a>
                 </div>
                 <div class="card-body">
-                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnPrev" value="Previous">
-                    <input class="btn btn-primary" onclick="pindah( {{ bidang.id }}, {{ len }} )" type="button" id="btnNext" value="Next">
+                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }})" type="button" id="btnPrev" value="Previous">
+                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }})" type="button" id="btnNext" value="Next">
                 </div>
             </div>
         </div>
