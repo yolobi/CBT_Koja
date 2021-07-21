@@ -32,7 +32,7 @@ def decode_jwt(token):
     return res
 
 
-@app.route("/start")
+@app.route("/start/1c096d6e413c588e44cb9031d03b012f")
 def start():
     cur = mysql.cursor(buffered=True)
     id = 1
