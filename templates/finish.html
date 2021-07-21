@@ -39,7 +39,7 @@
 
             <ul class="list-unstyled components px-3">
                 {% for i in range(len) %}
-                    <button id="navigasi" onclick="navigasi({{i+1}})" type="button" class="btn btn-light h-5 w-5" style="height: 18%; width: 18%">{{i+1}}</button>
+                    <button id="navigasi" onclick="navigasi({{i+1}}, '{{ user.bidang }}')" type="button" class="btn btn-light h-5 w-5" style="height: 18%; width: 18%">{{i+1}}</button>
                 {% endfor %}
             </ul>
             <ul class="list-unstyled components px-3">
