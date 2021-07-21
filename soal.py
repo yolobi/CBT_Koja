@@ -1,3 +1,4 @@
+import re
 from flask.templating import render_template_string
 from app import app, bcrypt, jwt, cache
 from db import mysql
@@ -318,4 +319,19 @@ def finish_attempt(bidang):
 
 @app.route("/<bidang>/essay")
 def upload_essay(bidang):
-    return render_template("essay.html")
+    token = request.cookies.get('auth')
+    payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
+    auth = payload['sub']
+    if auth['bidang'] != bidang:
+        return 'Bidang anda tidak sesuai'
+    return render_template("essay.html", user=auth)
+
+
+@app.route("/api/finish", methods=['POST'])
+def finish_post():
+    if request.method == 'POST':
+        data = dict(request.form)
+        print("data:",data)
+        json_obj = json.dumps(data)
+        print(json_obj, len(json_obj))
+        return '123'
