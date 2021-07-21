@@ -92,3 +92,16 @@ def secret():
 @app.route("/secret_dashboard")
 def secret_dash():
 	return render_template("secret_dashboard.html")
+
+@app.route("/ready", methods=['GET'])
+def ready():
+	if (request.method == 'GET' and request.cookies.get("auth")):
+		token = request.cookies.get('auth')
+		print(token)
+		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
+		auth = payload['sub']
+		print(auth)
+		return render_template("start.html", user=auth)
+	else:
+		error = "You need to login first"
+		return render_template("index.html", error=error)
