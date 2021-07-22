@@ -27,6 +27,11 @@ function insert_pg(bidang_id) {
 	location.reload();
 }
 
+function show(bidang_id){
+	localStorage.getItem(bidang_id);
+	document.getElementById("inpValue").value = localStorage.getItem(bidang_id);
+}
+
 function hapus(bidang_id){
 	const key = bidang_id;
 	localStorage.removeItem(key);

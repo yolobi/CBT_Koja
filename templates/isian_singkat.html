@@ -117,9 +117,11 @@
                 <div class="card-body">
                     
                     <form>
+                        <body onload=show({{ bidang.id }})>
                         Jawaban: <input type="text" name="answer" id="inpValue">
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_isian({{bidang.id}})">Simpan</button>
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="hapus({{bidang.id}})">Clear</button>
+                        </body>
                     </form>
                     <br>
                 </div>

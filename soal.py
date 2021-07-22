@@ -24,7 +24,7 @@ total_soal = {
 }
 
 def create_timer(uid):
-	token = jwt.encode({"uid": uid, "exp": datetime.datetime.now() + datetime.timedelta(seconds=30000)}, app.config.get('JWT_SECRET_KEY'))
+	token = jwt.encode({"uid": uid, "exp": datetime.datetime.now() + datetime.timedelta(seconds=180)}, app.config.get('JWT_SECRET_KEY'))
 	return token
 
 def decode_jwt(token):
@@ -379,6 +379,7 @@ def finish_attempt(bidang):
         return 'Bidang anda tidak sesuai'
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
+    print(rv)
     if(rv[0]):
         return 'Session Anda telah habis'
     total = total_soal[bidang]
