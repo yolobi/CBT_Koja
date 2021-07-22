@@ -9,6 +9,7 @@ function insert_isian(bidang_id){
 	document.getElementById("inpValue").value = localStorage.getItem(key);
 	console.log(localStorage.getItem(key));
 	alert('jawaban tersimpan');
+	location.reload();
 }
 
 function insert_pg(bidang_id) {
@@ -23,23 +24,12 @@ function insert_pg(bidang_id) {
 	localStorage.setItem(key, val);
 	console.log(localStorage);
 	alert('jawaban tersimpan');
+	location.reload();
 }
 
-function finish(len){
-	document.addEventListener("DOMContentLoaded", function() {
-      const formSubmitJawaban = document.getElementById("form-submit-jawaban")
-      const totalJawaban = len; // ini ganti value nya sesuai total soal
-
-      for(let i = 0; i < totalJawaban; i++) {
-          let key = i+1 // sesuaikan key nya
-          let inputHidden = document.createElement("input")
-          inputHidden.setAttribute("type", "hidden")
-          inputHidden.setAttribute("name", key)
-          inputHidden.setAttribute("value", localStorage.getItem(key))
-          formSubmitJawaban.appendChild(inputHidden)
-      }
-  })
+function hapus(bidang_id){
+	const key = bidang_id;
+	localStorage.removeItem(key);
+	alert('jawaban terhapus');
+	location.reload();
 }
-/*document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("inpValue").value = localStorage.getItem("key")
-})*/

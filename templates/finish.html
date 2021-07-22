@@ -39,7 +39,14 @@
 
             <ul class="list-unstyled components px-3">
                 {% for i in range(len) %}
-                    <button id="navigasi" onclick="navigasi({{i+1}}, '{{ user.bidang }}')" type="button" class="btn btn-light h-5 w-5" style="height: 18%; width: 18%">{{i+1}}</button>
+                    <button id="navigasi_{{i+1}}" onclick="navigasi({{i+1}}, '{{ user.bidang }}')" type="button" class="btn btn-light h-5 w-5" style="height: 18%; width: 18%">{{i+1}}</button>
+                    <script>
+                        if(localStorage.getItem({{i+1}}) != null){
+                            console.log(localStorage.getItem({{i+1}}));
+                            document.getElementById("navigasi_{{i+1}}").classList.toggle("btn-light", false);
+                            document.getElementById("navigasi_{{i+1}}").classList.toggle("btn-success", true);
+                        }
+                    </script>
                 {% endfor %}
             </ul>
             <ul class="list-unstyled components px-3">
