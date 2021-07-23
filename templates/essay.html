@@ -114,6 +114,16 @@
                         }, 1000);
                     </script>
             <div class="card">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                {% block body %}{% endblock %}
                 <div class="card-body">
                     <form action="/api/essay" method="POST" enctype="multipart/form-data">
                         <input type="file" name='ess'>
