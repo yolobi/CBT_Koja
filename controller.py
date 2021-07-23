@@ -57,6 +57,7 @@ def register_form():
 @app.route("/api/login", methods=['POST'])
 def login_form():
 	if request.method == 'POST':
+		time.sleep(1)
 		data = dict(request.form)
 		cur = mysql.cursor(buffered=True)
 		email = data['email']
