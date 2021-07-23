@@ -125,6 +125,7 @@ def upload():
 			cur = mysql.cursor(buffered=True)
 			cur.execute("UPDATE users set status = 1 where uid = %s", (auth['uid'],))
 			mysql.commit()
+			cur.close()
 			return redirect(url_for("persyaratan"))
 		else:
 			flash("File must be png, jpg, or jpeg")
@@ -141,10 +142,13 @@ def reset():
 			token = create_token(email)
 			send_email(token,email)
 			flash('Success! please check your email')
+			cur.close()
 			return redirect(url_for("forgot_password"))
 		else:
 			flash('Email doesn\'t exist!')
+			cur.close()
 			return redirect(url_for("forgot_password"))
+		
 
 @app.route("/forgot-password/<token>", methods = ["POST","GET"])
 @cache.cached(timeout=30, query_string=True)
