@@ -33,13 +33,13 @@
             <div class="sidebar-header">
                 
                 <h5 style="float: left;">{{ user.name }}</h5>
-                <h6 style="float: left;">{{ user.bidang }}</h6>
+                <h6 style="float: left;">{{ ujicoba }}</h6>
 
             </div>
 
             <ul class="list-unstyled components px-3 ">
                 {% for i in range(len) %}
-                    <button id="navigasi_{{i+1}}" onclick="navigasi({{i+1}}, '{{ user.bidang }}')" type="button" class="btn btn-light h-5 w-5 mt-1" style="height: 18%; width: 18%">{{i+1}}</button>
+                    <button id="navigasi_{{i+1}}" onclick="navigasi({{i+1}}, '{{ ujicoba }}')" type="button" class="btn btn-light h-5 w-5 mt-1" style="height: 18%; width: 18%">{{i+1}}</button>
                     <script>
                         if(localStorage.getItem({{i+1}}) != null){
                             console.log(localStorage.getItem({{i+1}}));
@@ -50,11 +50,11 @@
                 {% endfor %}
             </ul>
             <ul class="list-unstyled components px-3">
-                <button type="button" onclick="essai('{{ user.bidang }}')" class="btn btn-light px-3 py-2 h-10 w-10">Essai</button>
+                <button type="button" onclick="essai('{{ ujicoba }}')" class="btn btn-light px-3 py-2 h-10 w-10">Essai</button>
             </ul>
 
             <ul class="list-unstyled components px-3">
-                <button type="button" onclick="selesai('{{ user.bidang }}')" class="btn btn-danger px-3 py-2 h-10 w-10">Submit</button>
+                <button type="button" onclick="selesai('{{ ujicoba }}')" class="btn btn-danger px-3 py-2 h-10 w-10">Submit</button>
             </ul>
 
         </nav>
@@ -126,8 +126,8 @@
                     <br>
                 </div>
                 <div class="card-body">
-                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnPrev" value="Previous">
-                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnNext" value="Next">
+                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnPrev" value="Previous">
+                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnNext" value="Next">
                 </div>
             </div>
         </div>
