@@ -21,6 +21,7 @@ total_soal = {
     'kimia': 90,
     'geografi': 55,
     'biologi': 50,
+    'ujicoba': 5,
 }
 
 def create_timer(uid):
@@ -69,7 +70,7 @@ def uji():
     if (rv[0]):
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
-        return redirect(url_for('{}'.format(auth['bidang']),id=id))
+        return redirect(url_for('coba',id=id))
     response = make_response(redirect(url_for('coba', id=id)))
     session = create_timer(auth['uid'])
     response.set_cookie('session', session)
@@ -87,11 +88,11 @@ def coba(id):
         try:
             timer = decode_jwt(session)
         except:
-            return redirect(url_for('upload_essay',bidang=auth['bidang']))
+            return redirect(url_for('upload_essay',bidang='ujicoba'))
         if (auth['bidang']):
             cur = mysql.cursor(buffered=True)
             total = total_soal[auth['bidang']]
-            cur.execute("SELECT * FROM komputer where id = %s", (id,))
+            cur.execute("SELECT * FROM ujicoba where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
@@ -446,7 +447,7 @@ def upload_essay(bidang):
     token = request.cookies.get('auth')
     payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
     auth = payload['sub']
-    if auth['bidang'] != bidang:
+    if bidang != 'ujicoba' and auth['bidang'] != bidang:
         return 'Bidang anda tidak sesuai'
     total = total_soal[bidang]
     return render_template("essay.html", user=auth, len=total)
