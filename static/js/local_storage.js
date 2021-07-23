@@ -27,6 +27,12 @@ function insert_pg(bidang_id) {
 	location.reload();
 }
 
+function cek(bidang_id){
+	const key = localStorage.getItem(bidang_id);
+	console.log("opsi_"+key);
+	document.getElementById("opsi_"+key).checked = true;
+}
+
 function show(bidang_id){
 	localStorage.getItem(bidang_id);
 	document.getElementById("inpValue").value = localStorage.getItem(bidang_id);
