@@ -27,11 +27,11 @@ window.location.href='http://koja-olimpiade.com/ujicoba_tryout/'+page;
 function essai(bidang){
   "use strict";
 //  window.location.href='http://koja-olimpiade.com/'+bidang+'/essay';
-window.location.href='http://koja-olimpiade.com/ujicoba_tryout/essay';
+window.location.href='http://koja-olimpiade.com/ujicoba/essay';
 };
 
 function selesai(bidang){
   "use strict"
 //  window.location.href='http://koja-olimpiade.com/'+bidang+'/finish';
-window.location.href='http://koja-olimpiade.com/ujicoba_tryout/finish';
+window.location.href='http://koja-olimpiade.com/ujicoba/finish';
 }
