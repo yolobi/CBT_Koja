@@ -11,6 +11,7 @@ import hashlib
 import os
 import jwt
 import errno
+import shutil
 
 
 def create_token(email):
@@ -94,13 +95,10 @@ def upload():
 		token = request.cookies.get('auth')
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
-		try:
-			os.mkdir("upload/{}".format(str(auth['uid'])+'_'+auth['name']))
-		except OSError as exc:
-			if exc.errno != errno.EEXIST:
-				raise
-			os.system("cd upload ; rm -rf '{}'".format(str(auth['uid'])+'_'+auth['name']))
-			os.mkdir("upload/{}".format(str(auth['uid'])+'_'+auth['name']))
+		dir =  'upload/{}'.format(str(auth['uid'])+'_'+auth['name'])
+		if os.path.exists(dir):
+			shutil.rmtree(dir)
+		os.makedirs(dir)
 		UPLOAD_FOLDER = 'upload/{}'.format(str(auth['uid'])+'_'+auth['name'])
 		ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 		app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
