@@ -115,13 +115,15 @@
                 </div>
                 <div class="card-body">
                     <form>
-                        <input type="radio" name="opsi" value="a">A. {{bidang.opsi_A}} <br>
-                        <input type="radio" name="opsi" value="b">B. {{bidang.opsi_B}} <br>
-                        <input type="radio" name="opsi" value="c">C. {{bidang.opsi_C}} <br>
-                        <input type="radio" name="opsi" value="d">D. {{bidang.opsi_D}} <br>
-                        <input type="radio" name="opsi" value="e">E. {{bidang.opsi_E}} <br>
+                        <body onload=cek({{ bidang.id }})>
+                        <input id="opsi_1" type="radio" name="opsi">A. {{bidang.opsi_A}} <br>
+                        <input id="opsi_2" type="radio" name="opsi">B. {{bidang.opsi_B}} <br>
+                        <input id="opsi_3" type="radio" name="opsi">C. {{bidang.opsi_C}} <br>
+                        <input id="opsi_4" type="radio" name="opsi">D. {{bidang.opsi_D}} <br>
+                        <input id="opsi_5" type="radio" name="opsi">E. {{bidang.opsi_E}} <br>
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_pg({{bidang.id}})">Simpan</button>
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="hapus({{bidang.id}})">Clear</button>
+                        </body>
                     </form>
                 </div>
                 <div class="card-body">

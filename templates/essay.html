@@ -82,13 +82,14 @@
                         <a id="hours"></a>
                         <a id="mins"></a>
                         <a id="secs"></a>
+                        <a id="end"></a>
                     </div>
                     <script>
                         var countDownDate = {{timer}};
 
                         var myfunc = setInterval(function() {
 
-                        var now = new Date().getTime();
+                        var now = Date.now();
                         var timeleft = countDownDate - now;
                             
                         // Calculating the days, hours, minutes and seconds left

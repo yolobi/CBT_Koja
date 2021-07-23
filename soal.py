@@ -24,7 +24,7 @@ total_soal = {
 }
 
 def create_timer(uid):
-	token = jwt.encode({"uid": uid, "exp": datetime.datetime.now() + datetime.timedelta(seconds=180)}, app.config.get('JWT_SECRET_KEY'))
+	token = jwt.encode({"uid": uid, "exp": datetime.datetime.now() + datetime.timedelta(seconds=60*300)}, app.config.get('JWT_SECRET_KEY'))
 	return token
 
 def decode_jwt(token):
