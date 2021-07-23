@@ -43,6 +43,7 @@ def register_form():
 		if cur.rowcount == 1:
 			print("MasukAAAAAAAa")
 			flash("User already exist!")
+			cur.close()
 			return redirect(url_for('register'))
 		else:
 			cur.execute("INSERT INTO users (name, email, school_address, class, password, phone) VALUES (%s, %s, %s, %s, %s, %s)", (name, email, school, bidang, password, phone))
@@ -65,6 +66,7 @@ def login_form():
 		cur.execute("SELECT * FROM users where email = %s", (email,))
 		rv = cur.fetchone()
 		print(rv)
+		cur.close()
 		try:
 			if bcrypt.check_password_hash(rv[3], password):
 				access_token = create_access_token(identity = {'uid': rv[0],'email': rv[1],'name': rv[2], 'school': rv[4], 'bidang': rv[5], 'phone': rv[6]})
@@ -174,6 +176,7 @@ def newpassword():
 				payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 				cur.execute("UPDATE users SET password = %s where email = %s", (new_password,payload['email'],))
 				mysql.commit()
+				cur.close()
 				flash("Success reset password try to login now")
 				return redirect(url_for("login"))
 			else:

@@ -49,6 +49,7 @@ def start():
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
     print(rv)
+    cur.close()
     if (rv[0]):
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
@@ -71,6 +72,7 @@ def uji():
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
     print(rv)
+    cur.close()
     if (rv[0]):
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
@@ -100,6 +102,7 @@ def coba(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -134,6 +137,7 @@ def komputer(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -170,6 +174,7 @@ def matematika(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -205,6 +210,7 @@ def biologi(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -239,6 +245,7 @@ def kimia(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -274,6 +281,7 @@ def astronomi(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -309,6 +317,7 @@ def fisika(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -344,6 +353,7 @@ def ekonomi(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -378,6 +388,7 @@ def geografi(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -413,6 +424,7 @@ def kebumian(id):
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
+            cur.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -441,6 +453,7 @@ def finish_attempt(bidang):
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
     print(rv)
+    cur.close()
     if(rv[0]):
         return 'Session Anda telah habis'
     total = total_soal[bidang]
@@ -472,6 +485,7 @@ def finish_post():
         for i in range(len(data)):
             cur.execute("INSERT INTO history (uid, answer, submitted_at) VALUES (%s, %s, %s)", (auth['uid'], data[str(i+1)], date))
             mysql.commit()
+        cur.close()
         flash("Jawaban Anda berhasil tersimpan, terimakasih")
         resp = make_response(redirect(url_for("home")))
         resp.set_cookie('session', '', expires=0)
