@@ -6,6 +6,7 @@ from flask.templating import render_template_string
 from app import app, bcrypt, jwt, cache
 from db import mysql
 from flask import request, redirect, jsonify, render_template, make_response, flash
+from werkzeug.utils import secure_filename
 import jwt
 import json
 import datetime
