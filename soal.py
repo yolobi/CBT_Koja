@@ -10,6 +10,10 @@ import jwt
 import json
 import datetime
 import time
+import hashlib
+import os
+import errno
+import shutil
 
 total_soal = {
     'matematika': 20,
