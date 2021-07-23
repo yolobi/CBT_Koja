@@ -137,6 +137,7 @@ def upload():
 
 @app.route("/api/reset", methods = ['POST'])
 def reset():
+	time.sleep(1)
 	if request.method == 'POST':
 		cur = mysql.cursor(buffered=True)
 		email = request.form['email'].lower()
