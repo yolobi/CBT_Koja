@@ -432,7 +432,7 @@ def finish_attempt(bidang):
     token = request.cookies.get('auth')
     payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
     auth = payload['sub']
-    if auth['bidang'] != bidang:
+    if bidang != 'ujicoba' and auth['bidang'] != bidang:
         return 'Bidang anda tidak sesuai'
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
