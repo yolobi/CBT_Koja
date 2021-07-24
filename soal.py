@@ -29,9 +29,16 @@ total_soal = {
     'ujicoba': 5,
 }
 
-def create_timer(uid):
-	token = jwt.encode({"uid": uid, "exp": datetime.datetime.now() + datetime.timedelta(seconds=60*30)}, app.config.get('JWT_SECRET_KEY'))
-	return token
+waktu_bidang = {
+    'matematika': 10800,
+    'biologi': 10800,
+    'komputer': 9600
+}
+
+def create_timer(uid,bidang):
+    sec = waktu_bidang[bidang]
+    token = jwt.encode({"uid": uid, "exp": datetime.datetime.now() + datetime.timedelta(seconds=sec)}, app.config.get('JWT_SECRET_KEY'))
+    return token
 
 def decode_jwt(token):
     res = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
@@ -53,15 +60,19 @@ def start():
     print(rv)
     cur.close()
     mysql.close()
+    print(auth['bidang'])
     if (rv[0]):
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
         return redirect(url_for('{}'.format(auth['bidang']),id=id))
-    response = make_response(redirect(url_for('{}'.format(auth['bidang']), id=id)))
-    session = create_timer(auth['uid'])
-    response.set_cookie('session', session)
-    print(session)
-    return response
+    if(auth['bidang'] == 'komputer' or auth['bidang'] == 'biologi' or auth['bidang'] == 'matematika'):
+        response = make_response(redirect(url_for('{}'.format(auth['bidang']), id=id)))
+        session = create_timer(auth['uid'], auth['bidang'])
+        response.set_cookie('session', session)
+        print(session)
+        return response
+    else:
+        return 'Sesi anda belum dimulai'
 
 @app.route("/ujicoba")
 def uji():
