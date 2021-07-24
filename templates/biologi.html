@@ -64,17 +64,15 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-justify"></i>
+                        <span>Soal {{bidang.id}}</span>
+                    </button>
 
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-justify"></i>
-                            <span>Soal {{bidang.id}}</span>
-                        </button>
-
-                        
-                        <header><h3>OTONAS-P KOJA 2021</h3></header>
-                        <a href="#" class="navbar-brand">
-                            <img src="/static/images/koja.png" height="45" alt="#">
-                        </a>
+                    <header><h3>OTONAS-P KOJA 2021</h3></header>
+                    <a href="#" class="navbar-brand">
+                        <img src="/static/images/koja.png" height="45" alt="#">
+                    </a>
                 </div>
             </nav>
             <div class="btn btn-danger">
@@ -83,7 +81,7 @@
                 <a id="secs"></a>
             </div>
             <script>
-                var countDownDate = {{timer-10}}
+                var countDownDate = {{timer}};
 
                 var myfunc = setInterval(function() {
 
@@ -116,19 +114,34 @@
                     {{bidang.soal}}
                 </div>
                 <div class="card-body">
-                    
                     <form>
-                        <body onload=show({{ bidang.id }})>
-                        Jawaban: <input type="text" name="answer" id="inpValue">
-                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_isian({{bidang.id}})">Simpan</button>
-                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="hapus({{bidang.id}})">Clear</button>
+                        <body onload=cek({{ bidang.id }})>
+                            <a>{{bidang.q1}}</a>
+                            <input id="opsi_1" type="radio" name="opsi">Benar
+                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
                         </body>
+                        <body onload=cek({{ bidang.id }})>
+                            <a>{{bidang.q2}}</a>
+                            <input id="opsi_1" type="radio" name="opsi">Benar
+                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                        </body>
+                        <body onload=cek({{ bidang.id }})>
+                            <a>{{bidang.q3}}</a>
+                            <input id="opsi_1" type="radio" name="opsi">Benar
+                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                        </body>
+                        <body onload=cek({{ bidang.id }})>
+                            <a>{{bidang.q4}}</a>
+                            <input id="opsi_1" type="radio" name="opsi">Benar
+                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                        </body>
+                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_pg({{bidang.id}})">Simpan</button>
+                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="hapus({{bidang.id}})">Clear</button>
                     </form>
-                    <br>
                 </div>
                 <div class="card-body">
-                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnPrev" value="Previous">
-                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnNext" value="Next">
+                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnPrev" value="Previous">
+                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnNext" value="Next">
                 </div>
             </div>
         </div>
