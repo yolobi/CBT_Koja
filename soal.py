@@ -516,7 +516,9 @@ def finish_post():
         cur.close()
         mysql.close()
         flash("Jawaban Anda berhasil tersimpan, terimakasih")
-        return 'success'
+        resp = make_response(redirect(url_for("home")))
+        resp.set_cookie('session', '', expires=0)
+        return resp
 
 @app.route("/api/essay", methods=['POST'])
 def api_essay():
