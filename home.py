@@ -47,7 +47,7 @@ def persyaratan():
 		token = request.cookies.get('auth')
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
-		cur = mysql.cursor(buffered=True)
+		cur = mysql.cursor(30)
 		cur.execute("SELECT status from users where uid = %s", (auth['uid'],))
 		cur.close()
 		rv = cur.fetchone()
