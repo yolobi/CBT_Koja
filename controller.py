@@ -2,7 +2,7 @@ import re
 from app import app, bcrypt, jwt, mail, cache
 from flask import jsonify, request, redirect, url_for, make_response, render_template, flash
 from werkzeug.utils import secure_filename
-from db import mysql
+import db
 from flask_jwt_extended import (create_access_token)
 from flask_mail import Message
 import time
@@ -12,7 +12,6 @@ import os
 import jwt
 import errno
 import shutil
-
 
 def create_token(email):
 	token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=180)}, app.config.get('JWT_SECRET_KEY'))
@@ -30,6 +29,7 @@ def send_email(token, email):
 
 @app.route("/api/register", methods=['POST'])
 def register_form():
+	mysql = db.connect()
 	if request.method == 'POST':
 		data = dict(request.form)
 		name = data['name']
@@ -38,28 +38,31 @@ def register_form():
 		bidang = data['bidang']
 		phone = data['nomor']
 		password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-		cur = mysql.cursor(buffered=True)
+		cur = mysql.cursor()
 		cur.execute("SELECT 1 FROM users WHERE email=%s", (email,))
 		if cur.rowcount == 1:
 			print("MasukAAAAAAAa")
 			flash("User already exist!")
 			cur.close()
+			mysql.close()
 			return redirect(url_for('register'))
 		else:
 			cur.execute("INSERT INTO users (name, email, school_address, class, password, phone) VALUES (%s, %s, %s, %s, %s, %s)", (name, email, school, bidang, password, phone))
 
 			mysql.commit()
 			cur.close()
+			mysql.close()
 			flash('You were successfully registered')
 			return redirect(url_for('login'))
 
 
 @app.route("/api/login", methods=['POST'])
 def login_form():
+	mysql = db.connect()
 	if request.method == 'POST':
 		time.sleep(1)
 		data = dict(request.form)
-		cur = mysql.cursor(buffered=True)
+		cur = mysql.cursor()
 		email = data['email']
 		password = data['password']
 		result = ""
@@ -74,15 +77,18 @@ def login_form():
 				response = make_response(redirect('/home'))
 				response.set_cookie('auth', access_token)
 				print(access_token)
+				mysql.close()
 				return response
 			else:
 				print("Masuk salah")
 				flash('Invalid username or password')
+				mysql.close()
 				return redirect(url_for("login"))
 
 		except:
 			print("Masuk erro")
 			flash('Invalid username or password')
+			mysql.close()
 			return redirect(url_for("login"))
 
 
@@ -95,6 +101,7 @@ def upload():
 			filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 	if request.method == 'POST':
+		mysql = db.connect()
 		token = request.cookies.get('auth')
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
@@ -125,21 +132,23 @@ def upload():
 			poster_pendaftaran.save(os.path.join(app.config['UPLOAD_FOLDER'], poster_pendaftaran_name))
 			poster_pembuat.save(os.path.join(app.config['UPLOAD_FOLDER'], poster_pembuat_name))
 			share.save(os.path.join(app.config['UPLOAD_FOLDER'], share_name))
-			cur = mysql.cursor(buffered=True)
+			cur = mysql.cursor()
 			cur.execute("UPDATE users set status = 1 where uid = %s", (auth['uid'],))
 			mysql.commit()
 			cur.close()
+			mysql.close()
 			return redirect(url_for("persyaratan"))
 		else:
 			flash("File must be png, jpg, or jpeg")
+			mysql.close()
 			return redirect(url_for("persyaratan"))
 
 
 @app.route("/api/reset", methods = ['POST'])
 def reset():
-	time.sleep(1)
+	mysql = db.connect()
 	if request.method == 'POST':
-		cur = mysql.cursor(buffered=True)
+		cur = mysql.cursor()
 		email = request.form['email'].lower()
 		cur.execute("SELECT 1 FROM users WHERE email=%s", (email,))
 		if cur.rowcount == 1:
@@ -147,10 +156,12 @@ def reset():
 			send_email(token,email)
 			flash('Success! please check your email')
 			cur.close()
+			mysql.close()
 			return redirect(url_for("forgot_password"))
 		else:
 			flash('Email doesn\'t exist!')
 			cur.close()
+			mysql.close()
 			return redirect(url_for("forgot_password"))
 		
 
@@ -166,9 +177,10 @@ def reset_token(token):
 
 @app.route("/api/newpass", methods=['POST'])
 def newpassword():
+	mysql = db.connect()
 	if request.method == 'POST':
 		try:
-			cur = mysql.cursor(buffered=True)
+			cur = mysql.cursor()
 			password = request.form['password']
 			confirm_password = request.form['confirm_password']
 			referrer = request.headers.get("Referer").split("/")
@@ -180,9 +192,11 @@ def newpassword():
 				mysql.commit()
 				cur.close()
 				flash("Success reset password try to login now")
+				mysql.close()
 				return redirect(url_for("login"))
 			else:
 				flash("Password not match!")
+				mysql.close()
 				return redirect(url_for("reset_token", token=token))
 		except:
 			return 'Link expired!'

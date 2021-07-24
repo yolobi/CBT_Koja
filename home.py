@@ -1,7 +1,7 @@
 from flask.helpers import make_response
 from app import app, cache
 import jwt
-from db import mysql
+import db
 from flask import render_template, request, redirect, url_for
 
 @app.route("/")
@@ -42,14 +42,17 @@ def profile():
 
 @app.route("/persyaratan")
 def persyaratan():
+	mysql = db.connect()
 	if (request.method == 'GET' and request.cookies.get("auth")):
 		token = request.cookies.get('auth')
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
 		cur = mysql.cursor(buffered=True)
 		cur.execute("SELECT status from users where uid = %s", (auth['uid'],))
+		cur.close()
 		rv = cur.fetchone()
 		check = rv[0]
+		mysql.close()
 		if (check == 1):
 			message = "https://t.me/joinchat/zV5XcF8c0H5lODll"
 			return render_template("persyaratan.html", message=message, user=auth)
