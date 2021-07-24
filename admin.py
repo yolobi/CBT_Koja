@@ -10,12 +10,40 @@ import jwt
 def admin_page():
 	return render_template('upload_soal.html')
 
+@app.route("/admin/bio")
+def admin_bio():
+	return render_template("upload_bio.html")
+
+@app.route("/api/bio", methods=['POST'])
+def add_bio():
+	if request.method == 'POST':
+		mysql = db.connect()
+		data = dict(request.form)
+		soal = data['soal'].replace('\r\n', '')
+		nomor = data['no_soal']
+		q1 = data['q1'].replace('\r\n', '')
+		q2 = data['q2'].replace('\r\n', '')
+		q3 = data['q3'].replace('\r\n', '')
+		q4 = data['q4'].replace('\r\n', '')
+		a1 = data['a1']
+		a2 = data['a2']
+		a3 = data['a3']
+		a4 = data['a4']
+		point = data['point']
+		cur = mysql.cursor()
+		cur.execute("INSERT INTO `biologi` (id, soal, q1, q2, q3, q4, a1, a2, a3, a4, point) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (nomor, soal, q1, q2, q3, q4, a1, a2, a3, a4, point))
+		mysql.commit()
+		cur.close()
+		mysql.close()
+		msg = "Success added soal {} no {}".format('biologi', nomor)
+		flash(msg)
+		return redirect(url_for('admin_bio'))
 
 @app.route("/api/soal", methods=["POST"])
 def add_soal():
 	mysql = db.connect()
 	if request.method == 'POST':
-		cur = cur = mysql.cursor(buffered=True)
+		cur = mysql.cursor()
 		data = dict(request.form)
 		bidang = data['bidang']
 		nomor = data['no_soal']
