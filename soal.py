@@ -41,13 +41,13 @@ def decode_jwt(token):
 @app.route("/start/xxx")
 def start():
     mysql = db.connect()
-    cur = mysql.cursor(buffered=True)
+    cur = mysql.cursor()
     id = 1
     token = request.cookies.get('auth')
     payload = decode_jwt(token)
     auth = payload['sub']
     #check session
-    cur = mysql.cursor(buffered=True)
+    cur = mysql.cursor()
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
     print(rv)
@@ -66,13 +66,13 @@ def start():
 @app.route("/ujicoba")
 def uji():
     mysql = db.connect()
-    cur = mysql.cursor(buffered=True)
+    cur = mysql.cursor()
     id = 1
     token = request.cookies.get('auth')
     payload = decode_jwt(token)
     auth = payload['sub']
     #check session
-    cur = mysql.cursor(buffered=True)
+    cur = mysql.cursor()
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
     print(rv)
@@ -102,7 +102,7 @@ def coba(id):
         except:
             return redirect(url_for('upload_essay',bidang='ujicoba'))
         if (auth['bidang']):
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM ujicoba where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -139,7 +139,7 @@ def komputer(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'komputer':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM komputer where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -177,7 +177,7 @@ def matematika(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'matematika':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             print(total)
             cur.execute("SELECT * FROM matematika where id = %s", (id,))
@@ -216,7 +216,7 @@ def biologi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'biologi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM biologi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -253,7 +253,7 @@ def kimia(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'kimia':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM kimia where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -291,7 +291,7 @@ def astronomi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'astronomi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM astronomi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -329,7 +329,7 @@ def fisika(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'fisika':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM fisika where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -367,7 +367,7 @@ def ekonomi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'ekonomi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM ekonomi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -404,7 +404,7 @@ def geografi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'geografi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM geografi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -442,7 +442,7 @@ def kebumian(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'kebumian':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM kebumian where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
@@ -470,7 +470,7 @@ def kebumian(id):
 @cache.cached(timeout=10, query_string=True)
 def finish_attempt(bidang):
     mysql = db.connect()
-    cur = mysql.cursor(buffered=True)
+    cur = mysql.cursor()
     token = request.cookies.get('auth')
     payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
     auth = payload['sub']
@@ -504,7 +504,7 @@ def finish_post():
         token = request.cookies.get('auth')
         payload = decode_jwt(token)
         auth = payload['sub']
-        cur = mysql.cursor(buffered=True)
+        cur = mysql.cursor()
         cur.execute("UPDATE users SET session = TRUE where uid = %s", (auth['uid'],))
         mysql.commit()
         data = dict(request.form)
