@@ -115,27 +115,27 @@
                 </div>
                 <div class="card-body">
                     <form>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, 1)>
                             <a>{{bidang.q1}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_1" type="radio" name="opsi1">Benar
+                            <input id="f_1" type="radio" name="opsi1">Salah <br>
                         </body>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, 2)>
                             <a>{{bidang.q2}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_2" type="radio" name="opsi2">Benar
+                            <input id="f_2" type="radio" name="opsi2">Salah <br>
                         </body>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, 3)>
                             <a>{{bidang.q3}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_3" type="radio" name="opsi3">Benar
+                            <input id="f_3" type="radio" name="opsi3">Salah <br>
                         </body>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, 4)>
                             <a>{{bidang.q4}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_4" type="radio" name="opsi4">Benar
+                            <input id="f_4" type="radio" name="opsi4">Salah <br>
                         </body>
-                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_pg({{bidang.id}})">Simpan</button>
+                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_bs({{bidang.id}})">Simpan</button>
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="hapus({{bidang.id}})">Clear</button>
                     </form>
                 </div>
