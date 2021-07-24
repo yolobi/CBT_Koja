@@ -38,7 +38,7 @@ def decode_jwt(token):
     return res
 
 
-@app.route("/start/1c096d6e413c588e44cb9031d03b012f")
+@app.route("/start/xxx")
 def start():
     mysql = db.connect()
     cur = mysql.cursor()
@@ -125,7 +125,7 @@ def coba(id):
         error = "You need to login first"
         return render_template("index.html", error=error)
 
-@app.route("/komputer/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/komputer/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def komputer(id):
     mysql = db.connect()
@@ -163,7 +163,7 @@ def komputer(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/matematika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/matematika/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def matematika(id):
     mysql = db.connect()
@@ -202,7 +202,7 @@ def matematika(id):
         return redirect(url_for('home'))
 
 
-@app.route("/biologi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/biologi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def biologi(id):
     mysql = db.connect()
@@ -234,7 +234,7 @@ def biologi(id):
         error = "You need to login first"
         return render_template("index.html", error=error)
     
-@app.route("/kimia/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/kimia/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def kimia(id):
     mysql = db.connect()
@@ -272,7 +272,7 @@ def kimia(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/astronomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/astronomi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def astronomi(id):
     mysql = db.connect()
@@ -310,7 +310,7 @@ def astronomi(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/fisika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/fisika/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def fisika(id):
     mysql = db.connect()
@@ -348,7 +348,7 @@ def fisika(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/ekonomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/ekonomi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def ekonomi(id):
     mysql = db.connect()
@@ -385,7 +385,7 @@ def ekonomi(id):
         error = "You need to login first"
         return render_template("index.html", error=error)
 
-@app.route("/geografi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/geografi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def geografi(id):
     mysql = db.connect()
@@ -423,7 +423,7 @@ def geografi(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/kebumian/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
+@app.route("/kebumian/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def kebumian(id):
     mysql = db.connect()
