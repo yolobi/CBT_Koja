@@ -38,7 +38,7 @@
 
             <ul class="list-unstyled components px-3">
                 {% for i in range(len) %}
-                    <button id="navigasi_{{i+1}}" onclick="navigasi({{i+1}}, '{{ ujicoba }}')" type="button" class="btn btn-light h-5 w-5 mt-1" style="height: 18%; width: 18%">{{i+1}}</button>
+                    <button id="navigasi_{{i+1}}" onclick="navigasi({{i+1}}, '{{ user.bidang }}')" type="button" class="btn btn-light h-5 w-5 mt-1" style="height: 18%; width: 18%">{{i+1}}</button>
                     <script>
                         if(localStorage.getItem({{i+1}}) != null){
                             console.log(localStorage.getItem({{i+1}}));
