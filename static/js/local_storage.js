@@ -27,7 +27,28 @@ function insert_pg(bidang_id) {
 	location.reload();
 }
 
+function insert_bs(bidang_id) {
+	const key = bidang_id;
+	var val;
+	const inpValue = document.getElementsByName("opsi1");
+	for(var i = 0; i < inpValue.length; i++){
+		if(inpValue[i].checked){
+			val = i+1;
+		}
+	}
+	localStorage.setItem(key, val);
+	console.log(localStorage);
+	alert('jawaban tersimpan');
+	location.reload();
+}
+
 function cek(bidang_id){
+	const key = localStorage.getItem(bidang_id);
+	console.log("opsi_"+key);
+	document.getElementById("opsi_"+key).checked = true;
+}
+
+function cekbio(bidang_id, q_id){
 	const key = localStorage.getItem(bidang_id);
 	console.log("opsi_"+key);
 	document.getElementById("opsi_"+key).checked = true;

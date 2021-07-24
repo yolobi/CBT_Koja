@@ -38,7 +38,7 @@ def decode_jwt(token):
     return res
 
 
-@app.route("/start/xxx")
+@app.route("/start/1c096d6e413c588e44cb9031d03b012f")
 def start():
     mysql = db.connect()
     cur = mysql.cursor()
@@ -114,18 +114,18 @@ def coba(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
         return render_template("index.html", error=error)
 
-@app.route("/komputer/xxx/<id>", methods=['GET'])
+@app.route("/komputer/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def komputer(id):
     mysql = db.connect()
@@ -151,11 +151,11 @@ def komputer(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
@@ -163,7 +163,7 @@ def komputer(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/matematika/xxx/<id>", methods=['GET'])
+@app.route("/matematika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def matematika(id):
     mysql = db.connect()
@@ -190,11 +190,11 @@ def matematika(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
@@ -202,7 +202,7 @@ def matematika(id):
         return redirect(url_for('home'))
 
 
-@app.route("/biologi/xxx/<id>", methods=['GET'])
+@app.route("/biologi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def biologi(id):
     mysql = db.connect()
@@ -227,19 +227,14 @@ def biologi(id):
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
-            if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
-            elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
-            else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+            return render_template("biologi.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
         return render_template("index.html", error=error)
     
-@app.route("/kimia/xxx/<id>", methods=['GET'])
+@app.route("/kimia/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def kimia(id):
     mysql = db.connect()
@@ -265,11 +260,11 @@ def kimia(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
@@ -277,7 +272,7 @@ def kimia(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/astronomi/xxx/<id>", methods=['GET'])
+@app.route("/astronomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def astronomi(id):
     mysql = db.connect()
@@ -303,11 +298,11 @@ def astronomi(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
@@ -315,7 +310,7 @@ def astronomi(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/fisika/xxx/<id>", methods=['GET'])
+@app.route("/fisika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def fisika(id):
     mysql = db.connect()
@@ -341,11 +336,11 @@ def fisika(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
@@ -353,7 +348,7 @@ def fisika(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/ekonomi/xxx/<id>", methods=['GET'])
+@app.route("/ekonomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def ekonomi(id):
     mysql = db.connect()
@@ -379,18 +374,18 @@ def ekonomi(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
         return render_template("index.html", error=error)
 
-@app.route("/geografi/xxx/<id>", methods=['GET'])
+@app.route("/geografi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def geografi(id):
     mysql = db.connect()
@@ -416,11 +411,11 @@ def geografi(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
@@ -428,7 +423,7 @@ def geografi(id):
         return render_template("index.html", error=error)
 
 
-@app.route("/kebumian/xxx/<id>", methods=['GET'])
+@app.route("/kebumian/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
 def kebumian(id):
     mysql = db.connect()
@@ -454,11 +449,11 @@ def kebumian(id):
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
             if res['kj'] == 'essay' or res['kj'] == 'essai':
-                return render_template("soal_essai.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("soal_essai.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             elif res['opsi_A'] == res['opsi_B'] == res['opsi_C'] == res['opsi_D'] == res['opsi_E'] == '':
-                return render_template("isian_singkat.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("isian_singkat.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
             else:
-                return render_template("pilihan_ganda.html", user=auth, bidang=res, ujicoba='ujicoba', len=5, timer=timer['exp']*3000)
+                return render_template("pilihan_ganda.html", user=auth, bidang=res, len=total, timer=timer['exp']*1000)
         else:
             return 'Bidang anda tidak sesuai'
     else:
@@ -484,7 +479,7 @@ def finish_attempt(bidang):
     if(rv[0]):
         return 'Session Anda telah habis'
     total = total_soal[bidang]
-    return render_template("finish.html", user=auth, len=5)
+    return render_template("finish.html", user=auth, len=total)
 
 @app.route("/<bidang>/essay")
 def upload_essay(bidang):
@@ -494,7 +489,7 @@ def upload_essay(bidang):
     if bidang != 'ujicoba' and auth['bidang'] != bidang:
         return 'Bidang anda tidak sesuai'
     total = total_soal[bidang]
-    return render_template("essay.html", user=auth, len=5)
+    return render_template("essay.html", user=auth, len=total)
 
 
 @app.route("/api/send", methods=['POST'])

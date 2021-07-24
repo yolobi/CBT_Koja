@@ -33,7 +33,7 @@
             <div class="sidebar-header">
                 
                 <h5 style="float: left;">{{ user.name }}</h5>
-                <h6 style="float: left;">{{ ujicoba }}</h6>
+                <h6 style="float: left;">{{ user.bidang }}</h6>
 
             </div>
 
@@ -50,11 +50,11 @@
                 {% endfor %}
             </ul>
             <ul class="list-unstyled components px-3">
-                <button type="button" onclick="essai('{{ ujicoba }}')" class="btn btn-light px-3 py-2 h-10 w-10">Essai</button>
+                <button type="button" onclick="essai('{{ user.bidang }}')" class="btn btn-light px-3 py-2 h-10 w-10">Essai</button>
             </ul>
 
             <ul class="list-unstyled components px-3">
-                <button type="button" onclick="selesai('{{ ujicoba }}')" class="btn btn-danger px-3 py-2 h-10 w-10">Submit</button>
+                <button type="button" onclick="selesai('{{ user.bidang }}')" class="btn btn-danger px-3 py-2 h-10 w-10">Submit</button>
             </ul>
 
         </nav>
@@ -115,33 +115,33 @@
                 </div>
                 <div class="card-body">
                     <form>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, a)>
                             <a>{{bidang.q1}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_1" type="radio" name="opsi1">Benar
+                            <input id="f_1" type="radio" name="opsi1">Salah <br>
                         </body>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, b)>
                             <a>{{bidang.q2}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_2" type="radio" name="opsi2">Benar
+                            <input id="f_2" type="radio" name="opsi2">Salah <br>
                         </body>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, c)>
                             <a>{{bidang.q3}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_3" type="radio" name="opsi3">Benar
+                            <input id="f_3" type="radio" name="opsi3">Salah <br>
                         </body>
-                        <body onload=cek({{ bidang.id }})>
+                        <body onload=cekbio({{ bidang.id }}, d)>
                             <a>{{bidang.q4}}</a>
-                            <input id="opsi_1" type="radio" name="opsi">Benar
-                            <input id="opsi_2" type="radio" name="opsi">Salah <br>
+                            <input id="t_4" type="radio" name="opsi4">Benar
+                            <input id="f_4" type="radio" name="opsi4">Salah <br>
                         </body>
-                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_pg({{bidang.id}})">Simpan</button>
+                        <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_bs({{bidang.id}})">Simpan</button>
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="hapus({{bidang.id}})">Clear</button>
                     </form>
                 </div>
                 <div class="card-body">
-                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnPrev" value="Previous">
-                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ ujicoba }}')" type="button" id="btnNext" value="Next">
+                    <input class="btn btn-primary" onclick="prev( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnPrev" value="Previous">
+                    <input class="btn btn-primary" onclick="next( {{ bidang.id }}, {{ len }}, '{{ user.bidang }}')" type="button" id="btnNext" value="Next">
                 </div>
             </div>
         </div>
