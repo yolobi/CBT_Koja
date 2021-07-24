@@ -32,7 +32,7 @@
             <div class="sidebar-header">
                 
                 <h5 style="float: left;">{{ user.name }}</h5>
-                <h6 style="float: left;">{{ ujicoba }}</h6>
+                <h6 style="float: left;">{{ user.bidang }}</h6>
 
             </div>
 
@@ -49,11 +49,11 @@
                 {% endfor %}
             </ul>
             <ul class="list-unstyled components px-3">
-                <button type="button" onclick="essai('{{ ujicoba }}')" class="btn btn-light px-3 py-2 h-10 w-10">Essai</button>
+                <button type="button" onclick="essai('{{ user.bidang }}')" class="btn btn-light px-3 py-2 h-10 w-10">Essai</button>
             </ul>
 
             <ul class="list-unstyled components px-3">
-                <button type="button" onclick="selesai('{{ ujicoba }}')" class="btn btn-danger px-3 py-2 h-10 w-10">Submit</button>
+                <button type="button" onclick="selesai('{{ user.bidang }}')" class="btn btn-danger px-3 py-2 h-10 w-10">Submit</button>
             </ul>
         </nav>
 

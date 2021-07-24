@@ -29,14 +29,36 @@ function insert_pg(bidang_id) {
 
 function insert_bs(bidang_id) {
 	const key = bidang_id;
+	console.log(key);
 	var val;
-	const inpValue = document.getElementsByName("opsi1");
+	var inpValue = document.getElementsByName("opsi1");
 	for(var i = 0; i < inpValue.length; i++){
 		if(inpValue[i].checked){
-			val = i+1;
+			val = i;
 		}
 	}
-	localStorage.setItem(key, val);
+	localStorage.setItem("a"+key, val);
+	inpValue = document.getElementsByName("opsi2");
+	for(var i = 0; i < inpValue.length; i++){
+		if(inpValue[i].checked){
+			val = i;
+		}
+	}
+	localStorage.setItem("b"+key, val);
+	inpValue = document.getElementsByName("opsi3");
+	for(var i = 0; i < inpValue.length; i++){
+		if(inpValue[i].checked){
+			val = i;
+		}
+	}
+	localStorage.setItem("c"+key, val);
+	inpValue = document.getElementsByName("opsi4");
+	for(var i = 0; i < inpValue.length; i++){
+		if(inpValue[i].checked){
+			val = i;
+		}
+	}
+	localStorage.setItem("d"+key, val);
 	console.log(localStorage);
 	alert('jawaban tersimpan');
 	location.reload();
@@ -48,10 +70,22 @@ function cek(bidang_id){
 	document.getElementById("opsi_"+key).checked = true;
 }
 
-function cekbio(bidang_id, q_id){
-	const key = localStorage.getItem(bidang_id);
+function cekbio(bidang_id){
+	var key = localStorage.getItem("a"+bidang_id);
 	console.log("opsi_"+key);
-	document.getElementById("opsi_"+key).checked = true;
+	document.getElementById("a_"+key).checked = true;
+
+	key = localStorage.getItem("b"+bidang_id);
+	console.log("opsi_"+key);
+	document.getElementById("b_"+key).checked = true;
+
+	key = localStorage.getItem("c"+bidang_id);
+	console.log("opsi_"+key);
+	document.getElementById("c_"+key).checked = true;
+
+	key = localStorage.getItem("d"+bidang_id);
+	console.log("opsi_"+key);
+	document.getElementById("d_"+key).checked = true;
 }
 
 function show(bidang_id){
