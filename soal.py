@@ -1,10 +1,11 @@
 from flask.wrappers import Response
 from controller import reset
 import re
+import mysql.connector
 from flask.helpers import url_for
 from flask.templating import render_template_string
 from app import app, bcrypt, jwt, cache
-from db import mysql
+import db
 from flask import request, redirect, jsonify, render_template, make_response, flash
 from werkzeug.utils import secure_filename
 import jwt
@@ -39,17 +40,19 @@ def decode_jwt(token):
 
 @app.route("/start/xxx")
 def start():
-    cur = mysql.cursor(buffered=True)
+    mysql = db.connect()
+    cur = mysql.cursor()
     id = 1
     token = request.cookies.get('auth')
     payload = decode_jwt(token)
     auth = payload['sub']
     #check session
-    cur = mysql.cursor(buffered=True)
+    cur = mysql.cursor()
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
     print(rv)
     cur.close()
+    mysql.close()
     if (rv[0]):
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
@@ -62,17 +65,19 @@ def start():
 
 @app.route("/ujicoba")
 def uji():
-    cur = mysql.cursor(buffered=True)
+    mysql = db.connect()
+    cur = mysql.cursor()
     id = 1
     token = request.cookies.get('auth')
     payload = decode_jwt(token)
     auth = payload['sub']
     #check session
-    cur = mysql.cursor(buffered=True)
+    cur = mysql.cursor()
     cur.execute("select session from users where uid = %s", (auth['uid'],))
     rv = cur.fetchone()
     print(rv)
     cur.close()
+    mysql.close()
     if (rv[0]):
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
@@ -86,6 +91,7 @@ def uji():
 @app.route("/ujicoba_tryout/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def coba(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -96,13 +102,14 @@ def coba(id):
         except:
             return redirect(url_for('upload_essay',bidang='ujicoba'))
         if (auth['bidang']):
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM ujicoba where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -121,6 +128,7 @@ def coba(id):
 @app.route("/komputer/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def komputer(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -131,13 +139,14 @@ def komputer(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'komputer':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM komputer where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -157,6 +166,7 @@ def komputer(id):
 @app.route("/matematika/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def matematika(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -167,7 +177,7 @@ def matematika(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'matematika':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             print(total)
             cur.execute("SELECT * FROM matematika where id = %s", (id,))
@@ -175,6 +185,7 @@ def matematika(id):
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -194,6 +205,7 @@ def matematika(id):
 @app.route("/biologi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def biologi(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -204,13 +216,14 @@ def biologi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'biologi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM biologi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -229,6 +242,7 @@ def biologi(id):
 @app.route("/kimia/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def kimia(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -239,13 +253,14 @@ def kimia(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'kimia':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM kimia where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -265,6 +280,7 @@ def kimia(id):
 @app.route("/astronomi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def astronomi(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -275,13 +291,14 @@ def astronomi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'astronomi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM astronomi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -301,6 +318,7 @@ def astronomi(id):
 @app.route("/fisika/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def fisika(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -311,13 +329,14 @@ def fisika(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'fisika':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM fisika where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -337,6 +356,7 @@ def fisika(id):
 @app.route("/ekonomi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def ekonomi(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -347,13 +367,14 @@ def ekonomi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'ekonomi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM ekonomi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -372,6 +393,7 @@ def ekonomi(id):
 @app.route("/geografi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def geografi(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -382,13 +404,14 @@ def geografi(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'geografi':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM geografi where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -408,6 +431,7 @@ def geografi(id):
 @app.route("/kebumian/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=10, query_string=True)
 def kebumian(id):
+    mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
         token = request.cookies.get('auth')
         session = request.cookies.get('session')
@@ -418,13 +442,14 @@ def kebumian(id):
         except:
             return redirect(url_for('upload_essay',bidang=auth['bidang']))
         if auth['bidang'] == 'kebumian':
-            cur = mysql.cursor(buffered=True)
+            cur = mysql.cursor()
             total = total_soal[auth['bidang']]
             cur.execute("SELECT * FROM kebumian where id = %s", (id,))
             row_headers = [x[0] for x in cur.description]
             rv = cur.fetchall()
             json_data = []
             cur.close()
+            mysql.close()
             for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
             res = json.loads(json.dumps(json_data))[0]
@@ -444,7 +469,8 @@ def kebumian(id):
 @app.route("/<bidang>/finish")
 @cache.cached(timeout=10, query_string=True)
 def finish_attempt(bidang):
-    cur = mysql.cursor(buffered=True)
+    mysql = db.connect()
+    cur = mysql.cursor()
     token = request.cookies.get('auth')
     payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
     auth = payload['sub']
@@ -454,6 +480,7 @@ def finish_attempt(bidang):
     rv = cur.fetchone()
     print(rv)
     cur.close()
+    mysql.close()
     if(rv[0]):
         return 'Session Anda telah habis'
     total = total_soal[bidang]
@@ -472,11 +499,12 @@ def upload_essay(bidang):
 
 @app.route("/api/send", methods=['POST'])
 def finish_post():
+    mysql = db.connect()
     if request.method == 'POST':
         token = request.cookies.get('auth')
         payload = decode_jwt(token)
         auth = payload['sub']
-        cur = mysql.cursor(buffered=True)
+        cur = mysql.cursor()
         cur.execute("UPDATE users SET session = TRUE where uid = %s", (auth['uid'],))
         mysql.commit()
         data = dict(request.form)
@@ -486,6 +514,7 @@ def finish_post():
             cur.execute("INSERT INTO history (uid, answer, submitted_at) VALUES (%s, %s, %s)", (auth['uid'], data[str(i+1)], date))
             mysql.commit()
         cur.close()
+        mysql.close()
         flash("Jawaban Anda berhasil tersimpan, terimakasih")
         resp = make_response(redirect(url_for("home")))
         resp.set_cookie('session', '', expires=0)

@@ -1,6 +1,6 @@
 from flask.helpers import url_for
 from app import app, bcrypt
-from db import mysql
+import db
 from flask import request, redirect, jsonify, render_template, flash
 import json
 import jwt
@@ -13,6 +13,7 @@ def admin_page():
 
 @app.route("/api/soal", methods=["POST"])
 def add_soal():
+	mysql = db.connect()
 	if request.method == 'POST':
 		cur = cur = mysql.cursor(buffered=True)
 		data = dict(request.form)
