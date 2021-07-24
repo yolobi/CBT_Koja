@@ -39,9 +39,9 @@
 
             <ul class="list-unstyled components px-3 ">
                 {% for i in range(len) %}
-                    <button id="navigasi_{{i+1}}" onclick="navigasi({{i+1}}, '{{ ujicoba }}')" type="button" class="btn btn-light h-5 w-5 mt-1" style="height: 18%; width: 18%">{{i+1}}</button>
+                    <button id="navigasi_{{i+1}}" onclick="navigasi({{i+1}}, '{{ user.bidang }}')" type="button" class="btn btn-light h-5 w-5 mt-1" style="height: 18%; width: 18%">{{i+1}}</button>
                     <script>
-                        if(localStorage.getItem({{i+1}}) != null){
+                        if(localStorage.getItem("a"+{{i+1}}) != null){
                             console.log(localStorage.getItem({{i+1}}));
                             document.getElementById("navigasi_{{i+1}}").classList.toggle("btn-light", false);
                             document.getElementById("navigasi_{{i+1}}").classList.toggle("btn-success", true);
@@ -115,25 +115,22 @@
                 </div>
                 <div class="card-body">
                     <form>
-                        <body onload=cekbio({{ bidang.id }}, a)>
+                        <body onload=cekbio({{ bidang.id }})>
                             <a>{{bidang.q1}}</a>
-                            <input id="t_1" type="radio" name="opsi1">Benar
-                            <input id="f_1" type="radio" name="opsi1">Salah <br>
-                        </body>
-                        <body onload=cekbio({{ bidang.id }}, b)>
+                            <input id="a_0" type="radio" name="opsi1">Salah
+                            <input id="a_1" type="radio" name="opsi1">Benar <br>
+                        
                             <a>{{bidang.q2}}</a>
-                            <input id="t_2" type="radio" name="opsi2">Benar
-                            <input id="f_2" type="radio" name="opsi2">Salah <br>
-                        </body>
-                        <body onload=cekbio({{ bidang.id }}, c)>
+                            <input id="b_0" type="radio" name="opsi2">Salah
+                            <input id="b_1" type="radio" name="opsi2">Benar <br>
+
                             <a>{{bidang.q3}}</a>
-                            <input id="t_3" type="radio" name="opsi3">Benar
-                            <input id="f_3" type="radio" name="opsi3">Salah <br>
-                        </body>
-                        <body onload=cekbio({{ bidang.id }}, d)>
+                            <input id="c_0" type="radio" name="opsi3">Salah
+                            <input id="c_1" type="radio" name="opsi3">Benar <br>
+                        
                             <a>{{bidang.q4}}</a>
-                            <input id="t_4" type="radio" name="opsi4">Benar
-                            <input id="f_4" type="radio" name="opsi4">Salah <br>
+                            <input id="d_0" type="radio" name="opsi4">Salah
+                            <input id="d_1" type="radio" name="opsi4">Benar <br>
                         </body>
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="insert_bs({{bidang.id}})">Simpan</button>
                         <button type="button" id="btnInsert" class="btn btn-primary" onclick="hapus({{bidang.id}})">Clear</button>
