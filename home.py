@@ -49,9 +49,10 @@ def persyaratan():
 		auth = payload['sub']
 		cur = mysql.cursor()
 		cur.execute("SELECT status from users where uid = %s", (auth['uid'],))
-		cur.close()
 		rv = cur.fetchone()
+		print(rv)
 		check = rv[0]
+		cur.close()
 		mysql.close()
 		if (check == 1):
 			message = "https://t.me/joinchat/zV5XcF8c0H5lODll"
