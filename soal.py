@@ -487,10 +487,13 @@ def finish_attempt(bidang):
     print(rv)
     cur.close()
     mysql.close()
-    if(rv[0]):
-        return 'Session Anda telah habis'
+    #if(rv[0]):
+        #return 'Session Anda telah habis'
     total = total_soal[bidang]
-    return render_template("finish.html", user=auth, len=total)
+    if (auth['bidang'] == 'biologi'):
+        return render_template("finish_biologi.html", user=auth, len=total)
+    else:
+        return render_template("finish.html", user=auth, len=total)
 
 @app.route("/<bidang>/essay")
 def upload_essay(bidang):
@@ -514,17 +517,40 @@ def finish_post():
         cur.execute("UPDATE users SET session = TRUE where uid = %s", (auth['uid'],))
         mysql.commit()
         data = dict(request.form)
-        print(data)
+        #print(data)
         date = (time.strftime('%Y-%m-%d %H:%M:%S'))
-        for i in range(len(data)):
-            cur.execute("INSERT INTO history (uid, answer, submitted_at) VALUES (%s, %s, %s)", (auth['uid'], data[str(i+1)], date))
-            mysql.commit()
-        cur.close()
-        mysql.close()
-        flash("Jawaban Anda berhasil tersimpan, terimakasih")
-        resp = make_response(redirect(url_for("home")))
-        resp.set_cookie('session', '', expires=0)
-        return resp
+        if auth['bidang'] == 'biologi':
+            print(data)
+            for i in range(len(data)//4):
+                a = (data['a'+str(i+1)])
+                b = (data['b'+str(i+1)])
+                c = (data['c'+str(i+1)])
+                d = (data['d'+str(i+1)])
+                cur.execute("INSERT INTO history (uid, answer, submitter_at) VALUES (%s, %s, %s)", (auth['uid'], a, date))
+                mysql.commit()
+                cur.execute("INSERT INTO history (uid, answer, submitter_at) VALUES (%s, %s, %s)", (auth['uid'], b, date))
+                mysql.commit()
+                cur.execute("INSERT INTO history (uid, answer, submitter_at) VALUES (%s, %s, %s)", (auth['uid'], c, date))
+                mysql.commit()
+                cur.execute("INSERT INTO history (uid, answer, submitter_at) VALUES (%s, %s, %s)", (auth['uid'], d, date))
+                mysql.commit()
+                
+            cur.close()
+            mysql.close()
+            flash("Jawaban Anda berhasil tersimpan, terimakasih")
+            resp = make_response(redirect(url_for("home")))
+            resp.set_cookie('session', '', expires=0)
+            return resp
+        else:
+            for i in range(len(data)):
+                cur.execute("INSERT INTO history (uid, answer, submitted_at) VALUES (%s, %s, %s)", (auth['uid'], data[str(i+1)], date))
+                mysql.commit()
+            cur.close()
+            mysql.close()
+            flash("Jawaban Anda berhasil tersimpan, terimakasih")
+            resp = make_response(redirect(url_for("home")))
+            resp.set_cookie('session', '', expires=0)
+            return resp
 
 @app.route("/api/essay", methods=['POST'])
 def api_essay():
