@@ -487,8 +487,8 @@ def finish_attempt(bidang):
     print(rv)
     cur.close()
     mysql.close()
-    #if(rv[0]):
-        #return 'Session Anda telah habis'
+    if(rv[0]):
+        return 'Session Anda telah habis'
     total = total_soal[bidang]
     if (auth['bidang'] == 'biologi'):
         return render_template("finish_biologi.html", user=auth, len=total)
