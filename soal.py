@@ -32,7 +32,10 @@ total_soal = {
 waktu_bidang = {
     'matematika': 11400,
     'biologi': 11400,
-    'komputer': 10200
+    'komputer': 10200,
+    'kimia': 10800,
+    'geografi': 10800,
+    'astronomi': 10800
 }
 
 def create_timer(uid,bidang):
@@ -65,7 +68,7 @@ def start():
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
         return redirect(url_for('{}'.format(auth['bidang']),id=id))
-    if(auth['bidang'] == 'komputer' or auth['bidang'] == 'biologi' or auth['bidang'] == 'matematika'):
+    if(auth['bidang'] == 'kimia' or auth['bidang'] == 'geografi' or auth['bidang'] == 'astronomi'):
         response = make_response(redirect(url_for('{}'.format(auth['bidang']), id=id)))
         session = create_timer(auth['uid'], auth['bidang'])
         response.set_cookie('session', session)
