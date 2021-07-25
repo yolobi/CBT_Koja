@@ -100,7 +100,7 @@ def uji():
     return response
 
 @app.route("/ujicoba_tryout/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def coba(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -137,7 +137,7 @@ def coba(id):
         return redirect(url_for('home'))
 
 @app.route("/komputer/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def komputer(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -175,7 +175,7 @@ def komputer(id):
 
 
 @app.route("/matematika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def matematika(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -214,7 +214,7 @@ def matematika(id):
 
 
 @app.route("/biologi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def biologi(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -246,7 +246,7 @@ def biologi(id):
         return redirect(url_for('home'))
     
 @app.route("/kimia/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def kimia(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -284,7 +284,7 @@ def kimia(id):
 
 
 @app.route("/astronomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def astronomi(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -322,7 +322,7 @@ def astronomi(id):
 
 
 @app.route("/fisika/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def fisika(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -360,7 +360,7 @@ def fisika(id):
 
 
 @app.route("/ekonomi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def ekonomi(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -397,7 +397,7 @@ def ekonomi(id):
         return redirect(url_for('home'))
 
 @app.route("/geografi/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def geografi(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -435,7 +435,7 @@ def geografi(id):
 
 
 @app.route("/kebumian/1c096d6e413c588e44cb9031d03b012f/<id>", methods=['GET'])
-@cache.cached(timeout=30, query_string=True)
+
 def kebumian(id):
     mysql = db.connect()
     if (request.method == 'GET' and request.cookies.get("auth") and request.cookies.get("session")):
@@ -473,7 +473,7 @@ def kebumian(id):
 
 
 @app.route("/<bidang>/finish")
-@cache.cached(timeout=30, query_string=True)
+
 def finish_attempt(bidang):
     mysql = db.connect()
     cur = mysql.cursor()
