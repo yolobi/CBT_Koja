@@ -88,29 +88,29 @@
                           const formSubmitJawaban = document.getElementById("form-submit-jawaban")
                           const totalJawaban = {{ len }}; // ini ganti value nya sesuai total soal
 
-                          for(let i = 0; i < totalJawaban; i++) {
-                              let key = "a"+i+1 // sesuaikan key nya
+                          for(let i = 1; i <= totalJawaban; i++) {
+                              let key = "a"+i // sesuaikan key nya
                               let inputHidden = document.createElement("input")
                               inputHidden.setAttribute("type", "hidden")
                               inputHidden.setAttribute("name", key)
                               inputHidden.setAttribute("value", localStorage.getItem(key))
                               formSubmitJawaban.appendChild(inputHidden)
 
-                              key = "b"+i+1 // sesuaikan key nya
+                              key = "b"+i // sesuaikan key nya
                               inputHidden = document.createElement("input")
                               inputHidden.setAttribute("type", "hidden")
                               inputHidden.setAttribute("name", key)
                               inputHidden.setAttribute("value", localStorage.getItem(key))
                               formSubmitJawaban.appendChild(inputHidden)
 
-                              key = "c"+i+1 // sesuaikan key nya
+                              key = "c"+i // sesuaikan key nya
                               inputHidden = document.createElement("input")
                               inputHidden.setAttribute("type", "hidden")
                               inputHidden.setAttribute("name", key)
                               inputHidden.setAttribute("value", localStorage.getItem(key))
                               formSubmitJawaban.appendChild(inputHidden)
 
-                              key = "d"+i+1 // sesuaikan key nya
+                              key = "d"+i // sesuaikan key nya
                               inputHidden = document.createElement("input")
                               inputHidden.setAttribute("type", "hidden")
                               inputHidden.setAttribute("name", key)
