@@ -68,7 +68,7 @@ def start():
         return 'Session anda telah habis'
     if (request.cookies.get("session")):
         return redirect(url_for('{}'.format(auth['bidang']),id=id))
-    if(auth['bidang'] == 'matematika' or auth['bidang'] == 'biologi' or auth['bidang'] == 'komputer'):
+    if(1):
         response = make_response(redirect(url_for('{}'.format(auth['bidang']), id=id)))
         session = create_timer(auth['uid'], auth['bidang'])
         response.set_cookie('session', session)
