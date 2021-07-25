@@ -134,7 +134,7 @@ def coba(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 @app.route("/komputer/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
@@ -171,7 +171,7 @@ def komputer(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 
 @app.route("/matematika/xxx/<id>", methods=['GET'])
@@ -243,7 +243,7 @@ def biologi(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
     
 @app.route("/kimia/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
@@ -280,7 +280,7 @@ def kimia(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 
 @app.route("/astronomi/xxx/<id>", methods=['GET'])
@@ -318,7 +318,7 @@ def astronomi(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 
 @app.route("/fisika/xxx/<id>", methods=['GET'])
@@ -356,7 +356,7 @@ def fisika(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 
 @app.route("/ekonomi/xxx/<id>", methods=['GET'])
@@ -394,7 +394,7 @@ def ekonomi(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 @app.route("/geografi/xxx/<id>", methods=['GET'])
 @cache.cached(timeout=30, query_string=True)
@@ -431,7 +431,7 @@ def geografi(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 
 @app.route("/kebumian/xxx/<id>", methods=['GET'])
@@ -469,7 +469,7 @@ def kebumian(id):
             return 'Bidang anda tidak sesuai'
     else:
         error = "You need to login first"
-        return render_template("index.html", error=error)
+        return redirect(url_for('home'))
 
 
 @app.route("/<bidang>/finish")
