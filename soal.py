@@ -30,9 +30,9 @@ total_soal = {
 }
 
 waktu_bidang = {
-    'matematika': 10800,
-    'biologi': 10800,
-    'komputer': 9600
+    'matematika': 11400,
+    'biologi': 11400,
+    'komputer': 10200
 }
 
 def create_timer(uid,bidang):
