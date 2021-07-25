@@ -35,7 +35,10 @@ waktu_bidang = {
     'komputer': 10200,
     'kimia': 10800,
     'geografi': 10800,
-    'astronomi': 10800
+    'astronomi': 10800,
+    'ekonomi': 10800,
+    'fisika': 12600,
+    'kebumian': 9000
 }
 
 def create_timer(uid,bidang):
