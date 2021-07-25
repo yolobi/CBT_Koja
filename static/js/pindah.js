@@ -2,8 +2,9 @@ function next(bidang_id, len, bidang) {
   "use strict";
   var page = bidang_id;
   var pageCount = len;
-
-  page = ((page + pageCount + 1) % pageCount) + 1;
+  if(page < pageCount){
+    page = page + 1;
+  }
 //  window.location.href='http://koja-olimpiade.com/'+bidang+'/1c096d6e413c588e44cb9031d03b012f/'+page;
   window.location.href='http://koja-olimpiade.com/'+bidang+'/1c096d6e413c588e44cb9031d03b012f/'+page;
 };
@@ -12,7 +13,9 @@ function prev(bidang_id, len, bidang) {
   "use strict"
   var page = bidang_id;
   var pageCount = len;
-  page = (page % pageCount) + 1;
+  if(bidang_id > 1){
+    page = page - 1;
+  }
 //  window.location.href='http://koja-olimpiade.com/'+bidang+'/1c096d6e413c588e44cb9031d03b012f/'+page;
 window.location.href='http://koja-olimpiade.com/'+bidang+'/1c096d6e413c588e44cb9031d03b012f/'+page;
 }
