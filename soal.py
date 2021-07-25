@@ -538,11 +538,11 @@ def api_essay():
 		token = request.cookies.get('auth')
 		payload = jwt.decode(token, app.config.get('JWT_SECRET_KEY'), algorithms=['HS256'])
 		auth = payload['sub']
-		dir =  'essay/{}'.format(str(auth['uid'])+'_'+auth['name'])
+		dir =  'essay/{}'.format(str(auth['uid'])+'_'+auth['name']+'_'+auth['bidang'])
 		if os.path.exists(dir):
 			shutil.rmtree(dir)
 		os.makedirs(dir)
-		UPLOAD_FOLDER = 'essay/{}'.format(str(auth['uid'])+'_'+auth['name'])
+		UPLOAD_FOLDER = 'essay/{}'.format(str(auth['uid'])+'_'+auth['name']+'_'+auth['bidang'])
 		ALLOWED_EXTENSIONS = set(['pdf'])
 		app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 		ess = request.files['ess']
