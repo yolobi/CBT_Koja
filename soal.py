@@ -75,7 +75,11 @@ def start():
         print(session)
         return response
     else:
-        return 'Sesi anda belum dimulai'
+        response = make_response(redirect(url_for('{}'.format(auth['bidang']), id=id)))
+        session = create_timer(auth['uid'], auth['bidang'])
+        response.set_cookie('session', session)
+        print(session)
+        return response
 
 @app.route("/ujicoba")
 def uji():
